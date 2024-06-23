@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}" required>
                 <span> </span>
             </div>
-            <div class="forgot"> <a href='#'>Forgot Password</a></div>
+            <!-- <div class="forgot"> <a href='#'>Forgot Password</a></div> -->
             <input type="submit" value="Login">
             <div class="users_signup">
                 Don't have an account? <a href="register.html">Register</a>

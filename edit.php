@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
     <title>Edit Profile</title>
@@ -185,19 +185,19 @@ form input[type="submit"]:hover {
             ?>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <label for="username">Username:</label><br>
-                <input type="text" id="username" name="username" required><br><br>
+                <input type="text" id="username" name="username" pattern="[a-zA-Z0-9_]{3,16}" required><br><br>
 
                 <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" required><br><br>
+                <input type="email" id="email" name="email"  pattern="[a-z0-9._%+-]+@[a-z]+\.[a-z]{2,}$" required><br><br>
 
                 <label for="phone">Phone Number:</label><br>
-                <input type="text" id="phone" name="phone" required><br><br>
+                <input type="text" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br><br>
 
                 <label for="old_password">Old Password:</label><br>
-                <input type="password" id="old_password" name="old_password"><br><br>
+                <input type="password" id="old_password" name="old_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}"  required><br><br>
 
                 <label for="new_password">New Password:</label><br>
-                <input type="password" id="new_password" name="new_password"><br><br>
+                <input type="password" id="new_password" name="new_password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}" required><br><br>
 
                 <label for="confirm_password">Confirm New Password:</label><br>
                 <input type="password" id="confirm_password" name="confirm_password"><br><br>

@@ -7,7 +7,6 @@
 </head>
 <body>
     <div id="header"></div>
-    <main>
         <section class="profile-info">
             <h2>Account Information</h2>
             <?php
@@ -41,7 +40,6 @@
             }
             ?>
         </section>
-    </main>
           <div class="button-container">
           <input type="button" value="Order History" onclick="location.href='orderhistory.php';">
           <input type="button" value="Delete Account" onclick="location.href='deleteacc.php';">

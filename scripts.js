@@ -52,13 +52,48 @@ form_3_back_btn.addEventListener("click", function() {
     form_3_progessbar.classList.remove("active");
 });
 
+// btn_submit.addEventListener("click", function(event) {
+//     if (!validateForm3()) {
+//         event.preventDefault();  
+//     } else {
+//         submitted_Message();
+//     }
+// });
 btn_submit.addEventListener("click", function(event) {
-    if (!validateForm3()) {
-        event.preventDefault();  // Prevent form submission if validation fails
+    // Prevent the default form submission
+    event.preventDefault();
+
+    // Validate the form using validateForm3 function
+    if (validateForm3()) {
+        // Serialize form data
+        const formData = new FormData(document.querySelector('form'));
+
+        // Send form data to booking.php using fetch API
+        fetch('booking.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            // Handle success response from booking.php
+            console.log('Form data submitted successfully:', data);
+            // Optionally redirect to a success page or perform other actions
+        })
+        .catch(error => {
+            console.error('There was a problem with form submission:', error);
+            // Handle errors or display error messages to the user
+        });
     } else {
-        submitted_Message();
+        // Form validation failed, handle accordingly
+        console.log('Form validation failed');
     }
 });
+
 
 function submitted_Message() {
     alert("Your booking form has been submitted to Cuti cuti Melaka. We will contact you shortly.");
