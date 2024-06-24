@@ -60,13 +60,16 @@
 // sop_check.js
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Same Origin Policy check
-    const allowedOrigins = ['https://final.com'];
-    if (!allowedOrigins.includes(document.origin)) {
-        alert('Access Denied: Invalid Origin');
-        window.location.href = 'https://final.com/ccm_blue/login.php'; 
-        return; // Stop further execution
-    }
+ 
+//     const allowedOrigins = ['https://final.com/',  'https://final.com/ccm_blue/index.html', 'https://final.com/ccm_blue/header.html', 'https://final.com/ccm_blue/footer.html'];  
+
+// if (!allowedOrigins.includes(document.origin)) {
+//     alert('Access Denied: Invalid Origin. Please access from a valid origin.');
+//     window.location.href = 'https://final.com/ccm_blue/login.php';
+//     // Stop further execution
+//     throw new Error('Access Denied: Invalid Origin');
+// }
+
 
     // Fetch and insert header
     fetch("header.html")
