@@ -7,39 +7,74 @@ function sanitize_input($data) {
     return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
 }
 
+// Function to handle account lockout
+function handle_lockout() {
+    $_SESSION['lockout_time'] = time() + 10; // Lockout for 10 seconds
+}
+
+// Initialize error message
 $error = '';
 
 // Handle login form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = sanitize_input($_POST["email"]);
-    $password = sanitize_input($_POST["password"]);
-
-    // Query to retrieve user data
-    $query = "SELECT * FROM users WHERE email = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $user_data = $result->fetch_assoc();
-        $hashed_password = $user_data["password"];
-
-        // Verify password
-        if (password_verify($password, $hashed_password)) {
-            // Login successful, start session and redirect to profile page
-            $_SESSION['logged_in'] = true;
-            $_SESSION["id"] = $user_data["id"];  // Store user ID in session
-            $_SESSION["email"] = $email;
-            $_SESSION["username"] = $user_data["username"];
-            header("Location: homepage.html");
-            exit();
-        } else {
-            $error = "Invalid password";
-        }
+    // Check if account is currently locked out
+    if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] > time()) {
+        $seconds_remaining = $_SESSION['lockout_time'] - time();
+        $error = "Account locked. Please try again in {$seconds_remaining} seconds.";
     } else {
-        $error = "Email not found";
+        $email = sanitize_input($_POST["email"]);
+        $password = sanitize_input($_POST["password"]);
+
+        // Check if user has exceeded the number of failed attempts
+        if (!isset($_SESSION['login_attempts'])) {
+            $_SESSION['login_attempts'] = 0;
+        }
+
+        // Increment login attempts
+        $_SESSION['login_attempts']++;
+
+        // Query to retrieve user data
+        $query = "SELECT * FROM users WHERE email = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $user_data = $result->fetch_assoc();
+            $hashed_password = $user_data["password"];
+
+            // Verify password
+            if (password_verify($password, $hashed_password)) {
+                // Login successful, reset login attempts
+                $_SESSION['login_attempts'] = 0;
+                // Start session and redirect to profile page
+                $_SESSION['logged_in'] = true;
+                $_SESSION["id"] = $user_data["id"];  // Store user ID in session
+                $_SESSION["email"] = $email;
+                $_SESSION["username"] = $user_data["username"];
+                header("Location: homepage.html");
+                exit();
+            } else {
+                $error = "Invalid password";
+            }
+        } else {
+            $error = "Email not found";
+        }
+
+        // Check if login attempts exceed threshold
+        if ($_SESSION['login_attempts'] >= 3) {
+            handle_lockout();
+            $error = "Too many failed attempts. Account locked. Please try again in 10 seconds.";
+        }
     }
+}
+
+// Check if the lockout period has expired
+if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] <= time()) {
+    unset($_SESSION['lockout_time']); // Clear lockout time
+    $_SESSION['login_attempts'] = 0; // Reset login attempts
+    $error = ''; // Reset error message
 }
 ?>
 
