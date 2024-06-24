@@ -21,7 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] > time()) {
         $seconds_remaining = $_SESSION['lockout_time'] - time();
         $error = "Account locked. Please try again in {$seconds_remaining} seconds.";
-    } else {
+        $_SESSION['login_attempts'] = 0;
+    } else  {
         $email = sanitize_input($_POST["email"]);
         $password = sanitize_input($_POST["password"]);
 
@@ -76,6 +77,8 @@ if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] <= time()) {
     $_SESSION['login_attempts'] = 0; // Reset login attempts
     $error = ''; // Reset error message
 }
+
+// echo $_SESSION['login_attempts'];
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +102,6 @@ if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] <= time()) {
                 <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}" required>
                 <span> </span>
             </div>
-            <!-- <div class="forgot"> <a href='#'>Forgot Password</a></div> -->
             <input type="submit" value="Login">
             <div class="users_signup">
                 Don't have an account? <a href="register.html">Register</a>
