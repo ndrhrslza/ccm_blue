@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["id"] = $user_data["id"];  // Store user ID in session
             $_SESSION["email"] = $email;
             $_SESSION["username"] = $user_data["username"];
-            header("Location: homepage.html");
+            header("Location: index.html");
             exit();
         } else {
             $error = "Invalid password";

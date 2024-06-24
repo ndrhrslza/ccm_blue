@@ -10,7 +10,7 @@
 <div class="center">
     <h1>Logout</h1>
     <p>You have been successfully logged out.</p>
-    <p>Click <a href="homepage.html">here</a> to return to the homepage.</p>
+    <p>Click <a href="index.html">here</a> to return to the homepage.</p>
     
 </div>
 
@@ -28,7 +28,7 @@
 <div class="center">
     <h1>Logout</h1>
     <p>You have been successfully logged out.</p>
-    <p>Click <a href="homepage.html">here</a> to return to the homepage.</p>
+    <p>Click <a href="index.html">here</a> to return to the homepage.</p>
 </div>
 
 <script>

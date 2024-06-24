@@ -55,7 +55,7 @@ $stmt->bind_param("ssss", $name, $email, $subject, $message);
 
 // Execute the statement
 if ($stmt->execute()) {
-    header("Location: homepage.html");
+    header("Location: index.html");
     exit(); // Ensure script termination after redirection
 } else {
     echo "Error: " . $stmt->error;
