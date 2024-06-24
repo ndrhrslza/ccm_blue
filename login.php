@@ -2,11 +2,17 @@
 session_start();
 include 'db.php';
 
+// Function to sanitize user input
+function sanitize_input($data) {
+    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+}
+
 $error = '';
+
 // Handle login form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    $email = sanitize_input($_POST["email"]);
+    $password = sanitize_input($_POST["password"]);
 
     // Query to retrieve user data
     $query = "SELECT * FROM users WHERE email = ?";

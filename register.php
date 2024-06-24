@@ -1,13 +1,23 @@
-
 <?php
 require_once 'db.php';
 
-// Get user input from the registration form
-$username = $_POST['username'];
-$email = $_POST['email'];
-$phone = $_POST['phone'];
-$password = $_POST['password'];
-$confirm_password = $_POST['confirmPassword']; // Correct the name to match HTML form
+// Function to sanitize user input
+function sanitize_input($data) {
+    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+}
+
+// Get and sanitize user input from the registration form
+$username = sanitize_input($_POST['username']);
+$email = sanitize_input($_POST['email']);
+$phone = sanitize_input($_POST['phone']);
+$password = sanitize_input($_POST['password']);
+$confirm_password = sanitize_input($_POST['confirmPassword']); // Correct the name to match HTML form
+
+// Validate email format
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("Location: register.html?error=invalid_email");
+    exit();
+}
 
 // Check if the passwords are not empty
 if (empty($password) || empty($confirm_password)) {
@@ -16,27 +26,58 @@ if (empty($password) || empty($confirm_password)) {
 }
 
 // Check if the passwords match
-if ($password != $confirm_password) {
+if ($password !== $confirm_password) {
     header("Location: register.html?error=passwords_do_not_match");
     exit();
 }
 
-// Hash the password
+// Hash the password with a salt
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 // Prepare the statement
 $stmt = $conn->prepare("INSERT INTO bookingsystem.users (id, username, email, phone, password) VALUES ((FLOOR(RAND() * 1000) + UNIX_TIMESTAMP()), ?, ?, ?, ?)");
 if (!$stmt) {
     error_log("Prepare failed: ". $conn->error);
+}
+
+// Prepare the statement to check for existing users
+$check_stmt = $conn->prepare("SELECT id FROM bookingsystem.users WHERE username = ? OR email = ?");
+if (!$check_stmt) {
+    error_log("Prepare failed: " . $conn->error);
     header("Location: register.html?error=prepare_failed");
     exit();
 }
 
+$check_stmt->bind_param("ss", $username, $email);
+if (!$check_stmt->execute()) {
+    error_log("Execute failed: " . $check_stmt->error);
+    header("Location: register.html?error=execute_failed");
+    exit();
+}
+
+$check_stmt->store_result();
+
+// Check if a row with the same username or email already exists
+if ($check_stmt->num_rows > 0) {
+    header("Location: register.html?error=user_exists");
+    exit();
+}
+
+// Close the check statement
+$check_stmt->close();
+
+// Prepare the statement to insert the new user
+$insert_stmt = $conn->prepare("INSERT INTO bookingsystem.users (username, email, phone, password) VALUES (?, ?, ?, ?)");
+if (!$insert_stmt) {
+    error_log("Prepare failed: " . $conn->error);
+    header("Location: register.html?error=prepare_failed");
+    exit();
+}
 
 // Bind parameters and execute the statement
-$stmt->bind_param("ssss",  $username, $email, $phone, $hashed_password);
-if (!$stmt->execute()) {
-    error_log("Execute failed: ". $stmt->error);
+$insert_stmt->bind_param("ssss", $username, $email, $phone, $hashed_password);
+if (!$insert_stmt->execute()) {
+    error_log("Execute failed: " . $insert_stmt->error);
     header("Location: register.html?error=execute_failed");
     exit();
 }
@@ -46,6 +87,6 @@ header('Location: login.php');
 exit();
 
 // Close the statement and the connection
-$stmt->close();
+$insert_stmt->close();
 $conn->close();
 ?>
