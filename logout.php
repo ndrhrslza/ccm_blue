@@ -1,17 +1,37 @@
-// document.addEventListener("DOMContentLoaded", function() {
-//     fetch("header.html")
-//         .then(response => response.text())
-//         .then(data => {
-//             document.getElementById("header").innerHTML = data;
-//         });
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Logout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-//     fetch("footer.html")
-//         .then(response => response.text())
-//         .then(data => {
-//             document.getElementById("footer").innerHTML = data;
-//         });
-// });
+<body>
+<div class="center">
+    <h1>Logout</h1>
+    <p>You have been successfully logged out.</p>
+    <p>Click <a href="homepage.html">here</a> to return to the homepage.</p>
+    
+</div>
 
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Logout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="center">
+    <h1>Logout</h1>
+    <p>You have been successfully logged out.</p>
+    <p>Click <a href="homepage.html">here</a> to return to the homepage.</p>
+</div>
+
+<script>
 document.addEventListener("DOMContentLoaded", function() {
     // Fetch and insert header
     fetch("header.html")
@@ -57,3 +77,16 @@ function updateAuthLink(isLoggedIn) {
         }
     }
 }
+</script>
+
+</body>
+</html>
+
+<?php
+session_start();
+// Clear all session data
+session_unset();
+
+// Destroy the session
+session_destroy();
+?>

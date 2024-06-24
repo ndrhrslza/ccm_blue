@@ -25,7 +25,7 @@ if ($password != $confirm_password) {
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 // Prepare the statement
-$stmt = $conn->prepare("INSERT INTO bookingsystem.users (id, username, email, phone, password) VALUES ((FLOOR(RAND() * 100000) + UNIX_TIMESTAMP()), ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO bookingsystem.users (id, username, email, phone, password) VALUES ((FLOOR(RAND() * 1000) + UNIX_TIMESTAMP()), ?, ?, ?, ?)");
 if (!$stmt) {
     error_log("Prepare failed: ". $conn->error);
     header("Location: register.html?error=prepare_failed");
