@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verify password
         if (password_verify($password, $hashed_password)) {
             // Login successful, start session and redirect to profile page
+            $_SESSION['logged_in'] = true;
             $_SESSION["id"] = $user_data["id"];  // Store user ID in session
             $_SESSION["email"] = $email;
             $_SESSION["username"] = $user_data["username"];

@@ -175,8 +175,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Number of adult travelers must be at least 1.";
     }
 
-    if (!filter_var($childTraveler, FILTER_VALIDATE_INT, ["options" => ["min_range" => 0]])) {
-        $errors[] = "Number of child travelers cannot be negative.";
+    if (!is_numeric($childTraveler) || $childTraveler < 0 || filter_var($childTraveler, FILTER_VALIDATE_INT) === false) {
+        $errors[] = "Number of child travelers must be a non-negative integer.";
     }
 
     if ($payMethod == 'internetbanking') {
@@ -209,7 +209,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("sssissdssssss", $name, $email, $phoneno, $adultTraveler, $childTraveler, $destination, $totalAmount, $payMethod, $bank, $cardNumber, $cardName, $expiryDate, $cvv);
 
         if ($stmt->execute()) {
-            echo "Booking successfully submitted!";
+            // echo "Booking successfully submitted!";
+            header("Location: homepage.html");
+            exit();
         } else {
             echo json_encode(['message' => 'Error: ' . $stmt->error]);
         }

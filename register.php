@@ -1,4 +1,3 @@
-what is wrong with my code? why it does not work? after register successful, it does not redirect to login page.
 
 <?php
 require_once 'db.php';
@@ -26,15 +25,16 @@ if ($password != $confirm_password) {
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 // Prepare the statement
-$stmt = $conn->prepare("INSERT INTO bookingsystem.users (username, email, phone, password) VALUES (?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO bookingsystem.users (id, username, email, phone, password) VALUES ((FLOOR(RAND() * 100000) + UNIX_TIMESTAMP()), ?, ?, ?, ?)");
 if (!$stmt) {
     error_log("Prepare failed: ". $conn->error);
     header("Location: register.html?error=prepare_failed");
     exit();
 }
 
+
 // Bind parameters and execute the statement
-$stmt->bind_param("ssss", $username, $email, $phone, $hashed_password);
+$stmt->bind_param("ssss",  $username, $email, $phone, $hashed_password);
 if (!$stmt->execute()) {
     error_log("Execute failed: ". $stmt->error);
     header("Location: register.html?error=execute_failed");
