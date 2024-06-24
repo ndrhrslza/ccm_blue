@@ -11,6 +11,11 @@ body, html {
 main {
     padding: 20px;
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 .profile-info {
     background-color: #f9f9f9;
