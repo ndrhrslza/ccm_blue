@@ -52,12 +52,26 @@ if (isset($_SESSION['id'])) {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
   
   .delete-account input[type="checkbox"] {
     margin-right: 10px;
+    padding: 20px;
   }
   
+  .delete-account input[type="button"] {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
   .delete-account input[type="submit"] {
     background-color: #FF0000;
     color: #ffffff;
@@ -81,6 +95,7 @@ if (isset($_SESSION['id'])) {
         <input type="checkbox" id="confirm" name="confirm" required>
         <label for="confirm">I understand that this action is permanent and cannot be undone.</label>
         <br><br>
+        <input type="button" value="Cancel" onclick="location.href='profilepage.php';">
         <input type="submit" value="Delete Account">
       </form>
     </section>
