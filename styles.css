@@ -80,7 +80,7 @@ input[type="submit"]:hover {
 }
 
 .form__input--error {
-    background-color: red;
+    /* background-color: red; */
     display: block;
 }
 
