@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact Us | Cuti-Cuti Melaka</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    </head>
+    <style>
+        .bg{
+            background-image: url(photo-1571762305602-5499ef32da3a.jpg);
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 150%;
+            opacity: 0.7;
+            position: absolute;
+            z-index: -1;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        }
+
+        body {
+            margin:0px;
+            padding:0px;
+            background-color:#fff;
+            overflow-x:hidden;
+            }
+
+        header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 20%;
+        }
+
+        .nav ul{
+            list-style-type: none;
+            margin: 0px;
+            padding: 0;
+            overflow: hidden;
+            background-color:#1A132F;
+
+        }
+
+        .nav li{
+            float: left;
+        }
+
+        #right{
+            float:right;
+            display: block;
+            color: whitesmoke;
+            font-family: Montserrat;
+            font-size: small;
+            text-align: center;
+            padding:11px 17px;
+            text-decoration: none;
+
+        }
+
+        .nav li a{
+            display: block;
+            color: whitesmoke;
+            font-family: Montserrat;
+            font-size: small;
+            text-align: center;
+            padding:11px 17px;
+            text-decoration: none;
+        }
+
+        .nav li a:hover{
+        background-color:#A7C4D9;
+        }
+
+        
+        form h1{
+            font-family: 'Montserrat', sans-serif;
+            font-weight: regular;
+            font-size: 36px;
+            color: white;
+            margin-top: 60px;
+            margin-bottom: 40px;
+            margin-left: 200px;
+        }
+
+        form input, textarea{
+            height: 40px;
+            width: 60%;
+            color: black;
+            background-color: white;
+            font-size: 15px;
+            margin: 16px 16px 16px 16px;
+            margin-left: 80px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: regular;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px transparent solid;
+            cursor: text;
+        }
+
+        form textarea{
+            padding-bottom: 60px;
+            border-radius: 10px;
+            border: 1px transparent solid;
+            width: 60%;
+        }
+
+        form button{
+            width: 30%;
+            height: 60px;
+            background: rgba(24,160,251,1) ;
+            color: white;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: medium;
+            margin: 16px auto;
+            margin-left: 200px;
+            padding: 20px 20px auto;
+            cursor: pointer;
+            border-radius: 10px;
+            border: 1px transparent solid;
+        }
+
+        form button:hover{
+            background: #1A132F;
+        }
+
+
+        .boxes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 100px;
+            
+            /* modify */
+            /* flex-wrap: wrap; */
+
+        }
+
+        .boxs{
+            width: 45%;
+            height: 800px;
+            border-radius: 25px;
+            align-items: center;
+            align-content: center;
+            vertical-align: middle;
+            /* modify */
+            /* max-width: auto;
+            flex-wrap: wrap;  */
+            
+        }  
+ 
+
+        .forms{
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background: rgba(180,215,228,1);
+            border-radius: 25px;
+            padding: 20px;
+            margin-right: -20px;
+        }
+
+        .box img {
+            width: 129%;
+            height: 705px;
+            margin-left: -105px;
+            border-radius: 25px;
+            /* modify */
+            /* position: relative;
+            display: flex; */
+        }
+        .box1 img {
+            object-fit: fill;
+            border-radius: 25px;
+        }
+
+        .footer1{
+            background:#61A4BC;
+            padding:7em 0;
+            color:rgba(255,255,255,.7);
+            display: flex;
+            margin-top: 50px;
+            justify-content: center;
+            align-items: center;
+            align-content: bottom;
+        }
+
+        #footer{
+            font-size:18px;
+            letter-spacing:.2em;
+            line-height: 1.6;
+            text-transform:uppercase;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family:"Open Sans",Arial,sans-serif;
+        }
+    </style>
+    <script>
+            document.getElementById("submitForm").addEventListener("click", function(e) {
+                e.preventDefault();
+                var name = document.getElementById("name").value;
+                var email = document.getElementById("email").value;
+                var message = document.getElementById("message").value;
+                var subject = document.getElementById("subject").value;
+
+                if (name == null || email == null || phone == null ) {
+                    alert("Please fill all the fields");
+                } else {
+                    alert("Your inquiry has been successfully sent. We will get back to you soon.");
+                }
+            });
+
+             function submitted_Message() {
+                alert("Your inquiries has been submitted to Cuti cuti Melaka. We will contact you shortly.");
+                }
+
+    </script>
+
+    <body>
+        <div class="container">
+                <div class="nav">
+                    <ul>
+                        <li><a href="../1. Homepage/Homepage.html">Homepage</a> </li>
+                        <li><a href="../2. About Us/About Us .html">About Us</a> </li>
+                        <li><a href="../3. Galleries/Galleries.html">Galleries</a> </li>
+                        <li><a href="../4. Booking Page/Booking Form.html">Booking Page</a> </li>
+                        <li><a href="../5. Contact Us/Contact Us.html">Contact Us</a> </li>
+                        <li id = "right">Cuti-Cuti Melaka</li>
+                    </ul>   
+                </div>
+            </div>
+
+            <section class="content">
+                <img class="bg" src="images/photo-1571762305602-5499ef32da3a.jpg" alt="bg" height="100%" width="100%">
+                         <div class="boxes">
+                            <div class="boxs">
+                                <div class="forms"><form id="form-horizontal" action="" method="post">
+                                    <h1>Contact Us</h1>
+                                    <input type="text" id="name" placeholder="Name" required>
+                                    <input type="text" id="phone" placeholder="Phone Number" required>
+                                    <input type="email" id="email" placeholder="Email" required>
+                                    <textarea id="inquiry" placeholder="Your inquiry"></textarea>
+                                    <button id="submitForm" onClick="submitted_Message()">Submit</button>
+                                     </form></div>
+                            </div>
+                        
+
+                            <div class="boxs">
+                                <div class="box box1"><img src="images/box-right.png" alt="box-right " ></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+                </section>                     
+    </body>
+    
+    <footer class="footer1">
+        <div>  
+              <div>
+                <p3 id="footer" style="color:rgb(0, 0, 0); text-align:center;">Contact Us:</p3><br>
+                <p3 id="footer" style="color:rgb(0, 0, 0); text-align:center;">E-Mail: customer@CutiCutiMelaka.com.my</p3><br>
+                <p3 id="footer" style="color:rgb(0, 0, 0); text-align:center;">Hotline: 1300 00 0000</p3>
+              </div>
+        </div>
+      </footer>
+</html>

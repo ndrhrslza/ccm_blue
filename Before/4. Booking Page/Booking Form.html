@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Booking Form | Cuti-Cuti Melaka</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+</head>
+<body>
+
+    <div class="navigation">
+        <ul>
+            <li><a href="../1. Homepage/Homepage.html">Homepage</a> </li>
+            <li><a href="../2. About Us/About Us .html">About Us</a></li>
+            <li><a href="../3. Galleries/Galleries.html">Galleries</a></li>
+            <li><a href="../4. Booking Page/Booking Form.html">Booking Page</a></li>
+            <li><a href="../5. Contact Us/Contact Us.html">Contact Us</a></li>
+            <li id = "right">Cuti-Cuti Melaka</li>
+        </ul>
+
+    </div>
+      
+    <img src="Malacca-header.jpg" alt="Cuti-cuti Melaka">
+      
+    <h1>Booking Form</h1>
+    <div class="tagline">
+        <p>"Book your trip with us, and enjoy your holiday to the fullest"</p>
+    </div>
+
+    <div class="wrapper">
+        <div class="header">
+            <ul>
+                <li class="active form_1_progessbar">
+                    <div>
+                        <p>1</p>
+                    </div>
+                </li>
+                <li class="form_2_progessbar">
+                    <div>
+                        <p>2</p>
+                    </div>
+                </li>
+                <li class="form_3_progessbar">
+                    <div>
+                        <p>3</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="header_title">
+            <ul>
+                <li class="progessbar_1_title"><p>Customer Details</p>
+                </li>
+                <li class="progessbar_2_title"><p>Travel Details</p>
+                </li>
+                <li class="progessbar_3_title"><p>Payment Details</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="form_wrap">
+            <div class="form_1 data_info">
+                <form>
+                    <div class="form_container">
+                        <div class="input_wrap">
+                            <label for="name">Name</label>
+                            <input type="text" class="input" id="name" name="name">
+                            <div class="caption">*Full name as in passport</div>
+                        </div>
+                        <div class="input_wrap">
+                            <label for="email">Email</label>
+                            <input type="text" class="input" id="email" name="email">
+                            <div class="caption">*MyName@example.com</div>
+                        </div>
+                        <div class="input_wrap">
+                            <label for="travellers">Number of Travelers?</label>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        Adults<br>
+                                        <input type="text" id="adultTraveler" name="adultTraveler">     
+                                    </div>
+                                    <div class="form-group">
+                                        Children<br>
+                                        <input type="text" id="childTraveler" name="childTraveler">
+                                    </div>
+                                </div>
+                            <br>    
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="form_2 data_info" style="display: none;">
+                <form>
+                    <div class="form_container">
+                        <div class="input_wrap">
+                            <label for="destination">Where would you like to travel?</label>
+                            <input type="text" class="input" id="destination" name="destination">
+                        </div>
+                        <div class="input_wrap">
+                            <label for="departure">What is your city of departure?</label>
+                            <input type="text" class="input" id="departure" name="departure">
+                        </div>
+                        <div class="input_wrap">
+                            <div class="form-row">
+                                <div class="form-group">
+                                   <label for="departDate">Departure date</label><br>
+                                   <input type="text" id="departDate" name="departDate">     
+                                   <div class="caption">*dd/mm/yyyy</div>
+                                </div>
+                                <div class="form-group">
+                                   <label for="returnDate">Return date</label><br>
+                                   <input type="text" id="returnDate" name="returnDate">
+                                   <div class="caption">*dd/mm/yyyy</div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="input_wrap">
+                            <label for="budget">What is your budget for this trip (per person)?</label>
+                            <input type="text" class="input" id="budget" name="budget">
+                            <div class="caption">*RM</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="form_3 data_info" style="display: none;">
+                <form>
+                    <div class="form_container">
+                        <div class="input_wrap">
+                            <label>What kind of payment arrangement you prefer?</label><br>
+                            <input type="radio" id="deposit" name="payMethod" value="deposit">
+                            <label for="deposit" class="container3">Deposit Now, Pay Instant</label><br>
+                            <input type="radio" id="oneTimePaymt" name="payMethod" value="oneTimePaymt">
+                            <label for="oneTimePaymt" class="container3">Book Now, Pay Now</label>
+                        </div>
+                        <div class="input_wrap">
+                            <label for="quotatnFile">Upload quote</label><br>
+                            <input type="file" class="input" id="quotatnFile" name="quotatnFile">
+                            <div class="caption">*Transaction receipt</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="btns_wrap">
+            <div class="common_btns form_1_btns">
+                <button type="button" class="btn_next">Next</button>
+            </div>
+            <div class="common_btns form_2_btns" style="display: none;">
+                <button type="button" class="btn_back">Back</button>
+                <button type="button" class="btn_next">Next</button>
+            </div>
+            <div class="common_btns form_3_btns" style="display: none;">
+                <button type="button" class="btn_back">Back</button>
+                <button type="button" class="btn_submit" onClick="submitted_Message()">Submit</button>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="scripts.js"></script>
+
+</body>
+<footer class="footer1">
+    <div>
+          
+          <div>
+            <p3 id="footer" style="color:rgb(0, 0, 0); text-align:center;">Contact Us:</p3><br>
+            <p3 id="footer" style="color:rgb(0, 0, 0); text-align:center;">E-Mail: customer@CutiCutiMelaka.com.my</p3><br>
+            <p3 id="footer" style="color:rgb(0, 0, 0); text-align:center;">Hotline: 1300 00 0000</p3>
+          </div>
+    </div>
+  </footer>
+</html>
+
+

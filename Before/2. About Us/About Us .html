@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>About Us | Cuti-Cuti Melaka</title>
+      <link href='https://fonts.googleapis.com/css?family=Barriecito' rel='stylesheet'>
+      <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+      <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+      <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+      <link href='https://fonts.googleapis.com/css?family=Zeyada' rel='stylesheet'>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Pinyon+Script" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      * {
+        box-sizing: border-box;
+        margin:0;
+        padding: 0;
+        
+      }
+
+
+
+      ul{
+        list-style-type: none;
+        padding: 0;
+        overflow: hidden;
+        background-color:#1A132F;
+        height: 37px;
+      }
+
+      li{
+        float: left;
+      }
+
+      .right{
+        float:right;
+        display: block;
+        color: whitesmoke;
+        font-family: Montserrat;
+        font-size: small;
+        text-align: center;
+        padding:11px 17px;
+        text-decoration: none;
+      }
+
+      li a{
+        display: block;
+        color: whitesmoke;
+        font-family: Montserrat;
+        font-size: small;
+        text-align: center;
+        padding:11px 17px;
+        text-decoration: none;
+      }
+
+      li a:hover{
+        background-color:#A7C4D9;
+      }
+
+      .column {
+        float: left;
+        width: 360px;
+        padding: 10px;
+        height: 376px;
+        margin: 26px;
+        border-radius: 26px;
+      }
+
+      .row{
+        content: "";
+        display: table;
+        clear: both;
+        align-content: center;
+      }
+
+      #box{
+        text-align: left;
+        font-size: 26px;
+        padding-left: 20px;
+      }
+
+      p3 {
+        text-align: left;
+        padding-right: 30px;
+        font-family: "Courier New", monospace;
+      }
+
+      .column1 {
+        float: left;
+        width: 690px;
+        padding: 10px;
+        height: 100px;
+        margin: 26px;
+        border-radius: 26px;
+      }
+
+      h2{
+        font-family: 'Barriecito';
+        font-size: 128px;
+        line-height: 20%;
+        padding-top: 10%;
+      }
+
+      #para{
+        font-size: 60px;
+        text-align: left;
+      }
+
+      p1{
+        color:rgba(84, 103, 99, 0.25);
+      }
+
+      p2{
+        font-family: 'Roboto';
+        font-weight: bold;
+      }
+
+      #chart {
+        width:580px; 
+        font-family:'Zeyada';
+        font-size:65px;
+        text-align:center;
+      }
+
+      #position{
+        color:#086AAD;
+        font-family: 'Inter';
+        font-size: 16px;
+        font-weight: bold;
+        margin-top:auto;
+        padding-top: 15px;
+      }
+
+      #container {
+        font-family:verdana,arial,helvetica,sans-serif;
+        font-size:11px;
+        text-align:center;
+      }  
+
+      #no11 {
+        height: 85px;
+        width: 205px;
+        background-color:rgba(133, 131, 154, 0.5);
+        border-radius: 30px;
+        margin:auto;
+        
+      }
+
+
+      #no1 {
+        height: 60px;
+        width:205px;
+        border:5px solid #086AAD;
+        margin:auto;
+      } 
+
+      #line1 {
+        font-size:0;
+        width:3px;
+        height:20px;
+        color:#fff;
+        background-color:#000000;
+        margin:auto;
+      }
+
+      #line2 {
+        font-size:0;
+        width:800px;
+        height:4px;
+        color:#fff;
+        background-color:#000000;    
+        margin:auto;
+      }
+
+      #line3 {
+        font-size:0;
+        display:inline;
+        width:3px;
+        height:20px;
+        color:#fff;
+        background-color:#000000;
+        float:left;
+      }  
+
+      #line4{
+        font-size:0;
+        display:inline;
+        width:3px;
+        height:20px;
+        color:#fff;
+        background-color:#000000 ;
+        float:left;
+        margin-left: 270px;
+        align-content: center;
+      }
+
+      #line5{
+        font-size:0;
+        display:inline;
+        width:3px;
+        height:20px;
+        color:#fff;
+        background-color:#000000 ;
+        float:left;
+        margin-left: 260px;
+        align-content: center;
+      }
+
+      #line6 {
+        font-size:0;
+        display:inline;
+        width:3px;
+        height:20px;
+        color:#fff;
+        background-color:#000000 ;
+        float:left;
+        margin-left: 258px;
+        align-content: center;
+      }
+
+      #no2 {
+        background-color:rgba(133, 131, 154, 0.5);
+        clear:both;
+        float:left;
+        border-radius: 30px;
+        height: 85px;
+        width: 205px;
+        padding-top: 18px;
+      }
+
+      #no22 {
+        display:inline;
+        border:5px solid #086AAD;
+        clear:both;
+        float:left;
+        margin-top: 20px;
+        height: 60px;
+        width:205px;
+      } 
+
+      #no3 {
+        display:inline;
+        background-color:rgba(133, 131, 154, 0.5);
+        float:left;
+        margin-left: 63px;
+        height: 85px;
+        width: 205px;
+        border-radius: 30px;
+        padding-top: 18px;
+      }
+
+      #no33 {
+        display:inline;
+        border:5px solid #086AAD ;
+        float:left;
+        margin-left: 65px;    
+        margin-top: 20px;
+        height: 60px;
+        width:205px;
+      }
+
+      #no4 {
+        background-color:rgba(133, 131, 154, 0.5);
+        float:left;
+        margin-left: 65px;
+        height: 85px;
+        width: 205px;
+        border-radius: 30px;
+        padding-top: 18px;
+      }  
+      #no44 {
+        display:inline;  
+        border:5px solid #086AAD;
+        float:left;
+        margin-left: 65px;
+        margin-top: 20px;
+        height: 60px;
+        width:205px;
+      }  
+
+      #no5 {
+        display:inline;   
+        background-color:rgba(133, 131, 154, 0.5);
+        float:left;
+        margin-left: 60px;
+        height: 85px;
+        width: 205px;
+        border-radius: 30px;
+        padding-top: 18px;
+      }
+
+      #no55 {
+        display:inline;   
+        border:5px solid #086AAD;
+        float:left;
+        margin-left: 60px;
+        margin-top: 20px;
+        height: 60px;
+        width:205px;
+      } 
+
+      .clear {
+        clear:both;
+      }                  
+
+      #no1,#no22, #no33, #no44, #no55{
+        background-color: rgba(194, 145, 146, 0.5);
+      }
+
+      #name{
+        color: #000000;
+        font-family: 'Inter';
+        font-size: 18px;
+        font-weight: bold;
+        padding-top: 13px;
+      }
+
+      #name1{
+        color: #000000;
+        font-family: 'Inter';
+        font-size: 18px;
+        font-weight: bold;
+
+      }
+
+      .groupline{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .groupname{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .groupposition ,#no11{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .footer1{
+        background:#61A4BC;
+        padding:7em 0;
+        color:rgba(255,255,255,.7);
+        margin-top: 80px;
+        height:323px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+      }
+
+      #footer{
+        font-size:18px;
+        letter-spacing:.2em;
+        text-transform:uppercase;
+        line-height: 1.6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family:"Open Sans",Arial,sans-serif;
+
+      }
+                  
+
+    </style>
+
+      <ul>
+        <li><a href="../1. Homepage/Homepage.html">Homepage</a> </li>
+        <li><a href="../2. About Us/About Us .html">About Us</a> </li>
+        <li><a href="../3. Galleries/Galleries.html">Galleries</a> </li>
+        <li><a href="../4. Booking Page/Booking Form.html">Booking Page</a> </li>
+        <li><a href="../5. Contact Us/Contact Us.html">Contact Us</a> </li>
+        <li class = "right">Cuti-Cuti Melaka</li>
+      </ul>
+      <br><br>   
+
+  </head>
+
+  <body>
+
+      <center>
+        <div class="row">
+          <div class="column1" >
+            <h2><br><br>About Us <img src="Group.png" alt="Trulli" width="550" height="141"></h2>
+          </div>
+          <div class="column1" >
+            <p id="para"><p1>We are from </p1><p2>Group E<p1>,</p1> KICT’s </p2><p1>Student, eager </p1><p2>Students</p2> <p1>at</p1> <p2>IIUM gombak</p2> | <p2>Website Technology.</p2></p>
+            </div><br>
+        </div>
+      </center>
+      <br><br>
+
+
+      <center>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="row">
+          <div class="column" style="background-color:rgba(76,116,157,0.5);">
+            <img src="pic1.png" alt="Trulli" width="141" height="141">
+            <h3 id="box"><br>Mission</h3><br>
+            <p3>Provide Useful Information To The Tourists and Meet Tourist's Expectations And Attend To Their Needs.</p3>
+          </div>
+
+          <div class="column" style="background-color:rgba(133,131,154,0.5);">
+            <img src="pic2.png" alt="Trulli" width="141" height="141">
+            <h3 id="box"><br>Vision</h3><br>
+            <p3>To Ensure That Melaka Will Be One Of Interesting And Fascinating Historical Place To Visit.</p3>
+          </div>
+
+          <div class="column" style="background-color:rgba(194,145,146,0.5);">
+            <img src="pic3.png" alt="Trulli" width="141" height="141">
+            <h3 id="box"><br>Goals</h3><br>
+            <p3>To Attract More Tourists To Melaka and Help To Raise Economic Benefits For Local Which Is Melaka.</p3>
+          </div>
+
+        </div>
+      </center>
+
+      <br><br><br><br><br><br>
+      <center><h1 id="chart">Organizational Chart</h1></center>
+          <div id="container">
+              <div id="no1"><p id="position">CEO</p></div><br><br>  
+              <div id="no11"><p id="name1">Yasha Adam</p></div>
+              <div id="line1"></div>
+              <div id="line2"></div>
+              <div class="groupline">
+              <div id="line3"></div>
+              <div id="line4"></div>
+              <div id="line5"></div>
+              <div id="line6"></div></div>
+              <div class="groupname">
+              <div id="no2"><p id="name">Aneesa Nadira</p></div>
+              <div id="no3"><p id="name">Nor Anis Fazlin</p></div>
+              <div id="no4"><p id="name">Nurhanis</p></div>
+              <div id="no5"><p id="name">Sorfina Alyia</p></div></div><div>
+              <div class="groupposition">
+              <div id="no22"><p id="position">Finance Manager</p></div>
+              <div id="no33"><p id="position">Graphic Designer</p></div>
+              <div id="no44"><p id="position">Marketing Analyst</p></div>
+              <div id="no55"><p id="position">Web Developer</p></div></div> 
+          </div>
+
+  </body>
+
+  <footer class="footer1">
+      <div>
+          <div>
+            <p3 id="footer" style="color:rgb(0, 0, 0); text-align:center;">Contact Us:</p3><br>
+            <p3 id="footer" style="color:rgb(0, 0, 0); text-align:center;">E-Mail: customer@CutiCutiMelaka.com.my</p3><br>
+            <p3 id="footer" style="color:rgb(0, 0, 0); text-align:center;">Hotline: 1300 00 0000</p3>
+          </div>
+      </div>
+  </footer>
+
+</html>
