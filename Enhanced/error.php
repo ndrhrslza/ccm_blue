@@ -24,7 +24,7 @@
     <h1>Error</h1>
     <p>Sorry, an error occurred.</p>
     <div class="link">
-        <a href="index.html">Go to Home Page</a>
+        <a href="../homepage/index.html">Go to Home Page</a>
     </div>
 </body>
 </html>

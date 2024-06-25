@@ -1,17 +1,38 @@
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Logout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 
+<body>
+<div class="center">
+    <h1>Logout</h1>
+    <p>You have been successfully logged out.</p>
+    <p>Click <a href="index.html">here</a> to return to the homepage.</p>
+    
+</div>
 
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Logout</title>
+    <link rel="stylesheet" href="../auth/styles.css">
+</head>
+<body>
+<div class="center">
+    <h1>Logout</h1>
+    <p>You have been successfully logged out.</p>
+    <p>Click <a href="../homepage/index.html">here</a> to return to the homepage.</p>
+</div>
+
+<script>
 document.addEventListener("DOMContentLoaded", function() {
- 
-//     const allowedOrigins = ['https://final.com/',  'https://final.com/ccm_blue/index.html', 'https://final.com/ccm_blue/header.html', 'https://final.com/ccm_blue/footer.html'];  
-
-// if (!allowedOrigins.includes(document.origin)) {
-//     alert('Access Denied: Invalid Origin. Please access from a valid origin.');
-//     window.location.href = 'https://final.com/ccm_blue/login.php';
-//     // Stop further execution
-//     throw new Error('Access Denied: Invalid Origin');
-// }
-
-
     // Fetch and insert header
     fetch("header.html")
         .then(response => response.text())
@@ -56,3 +77,18 @@ function updateAuthLink(isLoggedIn) {
         }
     }
 }
+</script>
+
+</body>
+</html>
+
+<?php
+session_start();
+include '../sop_validation.php';
+include '../csp.php';
+// Clear all session data
+session_unset();
+
+// Destroy the session
+session_destroy();
+?>

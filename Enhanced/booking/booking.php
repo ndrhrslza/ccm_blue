@@ -2,9 +2,9 @@
 
 
 session_start();
-include 'db.php';
-include 'csp.php';
-include 'sop_validation.php';
+include '../db.php';
+include '../csp.php';
+include '../sop_validation.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function sanitize_input($data) {
@@ -83,11 +83,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             // echo "Booking successfully submitted!";
-            header("Location: orderhistory.php");
+            header("Location: ../profile/orderhistory.php");
             exit();
         } else {
             // echo json_encode(['message' => 'Error: ' . $stmt->error]);
-            header("Location: error.php");
+            header("Location: ../error.php");
             exit();
         }
 

@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Edit Profile</title>
-    <script src="index.js"></script>
+    <script src="../homepage/index.js"></script>
     <link rel="stylesheet" type="text/css" href="profile.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
             <h2>Edit Profile</h2>
             <?php
 session_start();
-include 'sop_validation.php';
+include '../sop_validation.php';
 
 // Regenerate session ID after login
 if (isset($_SESSION['id'])) {
@@ -20,9 +20,9 @@ if (isset($_SESSION['id'])) {
 }
 
 // Include database connection
-require_once 'db.php';
-include 'csp.php';
-include 'sop_validation.php';
+require_once '../db.php';
+include '../csp.php';
+include '../sop_validation.php';
 
 // Retrieve user information from database
 $user_id = $_SESSION['id'];

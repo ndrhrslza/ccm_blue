@@ -3,7 +3,7 @@
 <head>
     <title>Profile Page</title>
     <link rel="stylesheet" type="text/css" href="profile.css">
-    <script src="index.js"></script>
+    <script src="../homepage/index.js"></script>
 </head>
 <body>
     <div id="header"></div>
@@ -19,8 +19,9 @@ if (isset($_SESSION['id'])) {
     session_regenerate_id();
 
 // Include database connection securely
-require_once 'db.php';
-include 'csp.php';
+require_once '../db.php';
+include '../csp.php';
+include '../sop_validation.php';
 
 // Validate and sanitize user input
 $user_id = isset($_SESSION['id']) ? mysqli_real_escape_string($conn, $_SESSION['id']) : null;

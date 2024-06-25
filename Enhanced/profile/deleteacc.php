@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'db.php';
-include 'csp.php';
-include 'sop_validation.php';
+include '../db.php';
+include '../csp.php';
+include '../sop_validation.php';
 
 if (isset($_SESSION['id'])) {
   $user_id = $_SESSION['id'];
@@ -19,7 +19,7 @@ if (isset($_SESSION['id'])) {
     session_destroy();
 
     // Redirect to the login page
-    header('Location: login.php');
+    header('Location: ../auth/login.php');
     exit;
   }
 }
@@ -97,7 +97,7 @@ if (isset($_SESSION['id'])) {
         <input type="checkbox" id="confirm" name="confirm" required>
         <label for="confirm">I understand that this action is permanent and cannot be undone.</label>
         <br><br>
-        <input type="button" value="Cancel" onclick="location.href='profilepage.php';">
+        <input type="button" value="Cancel" onclick="location.href='../profile/profilepage.php';">
         <input type="submit" value="Delete Account">
       </form>
     </section>

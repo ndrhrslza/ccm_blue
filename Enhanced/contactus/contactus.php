@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'db.php';
-include 'csp.php';
-include 'sop_validation.php';
+include '../db.php';
+include '../csp.php';
+include '../sop_validation.php';
 
 // Function to sanitize input data
 function sanitize_input($data) {
@@ -57,7 +57,7 @@ $stmt->bind_param("ssss", $name, $email, $subject, $message);
 
 // Execute the statement
 if ($stmt->execute()) {
-    header("Location: index.html");
+    header("Location: ../homepage/index.html");
     exit(); // Ensure script termination after redirection
 } else {
     echo "Error: " . $stmt->error;

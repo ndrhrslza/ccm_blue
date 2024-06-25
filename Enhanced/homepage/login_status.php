@@ -1,7 +1,7 @@
 <?php
 session_start();
-include 'sop_validation.php';
-include 'csp.php';
+include '../sop_validation.php';
+include '../csp.php';
 
 $response = array('isLoggedIn' => false);
 

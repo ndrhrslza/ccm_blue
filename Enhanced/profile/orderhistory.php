@@ -3,7 +3,7 @@
 <head>
     <title>Order History</title>
     <link rel="stylesheet" type="text/css" href="profile.css">
-    <script src="index.js"></script>
+    <script src="../homepage/index.js"></script>
     <!-- Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
 </head>
@@ -11,10 +11,10 @@
     <div id="header"></div>
     <section class="booking-info">
         <?php
-        include 'db.php';
+        include '../db.php';
         session_start();
-        include 'sop_validation.php';
-        include 'csp.php';
+        include '../sop_validation.php';
+        include '../csp.php';
 
         if (isset($_SESSION['id'])) {
             session_regenerate_id();

@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'db.php';
-include 'sop_validation.php';
-include 'csp.php';
+include '../db.php';
+include '../sop_validation.php';
+include '../csp.php';
 
 // Function to sanitize user input
 function sanitize_input($data) {
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["id"] = $user_data["id"];  // Store user ID in session
                 $_SESSION["email"] = $email;
                 $_SESSION["username"] = $user_data["username"];
-                header("Location: index.html");
+                header("Location: ../homepage/index.html");
                 exit();
             } else {
                 $error = "Invalid password";
