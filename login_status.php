@@ -1,4 +1,5 @@
 <?php
+//include 'csp.php';
 session_start();
 
 $response = array('isLoggedIn' => false);

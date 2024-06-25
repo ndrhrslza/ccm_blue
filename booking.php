@@ -87,7 +87,7 @@
 //         echo json_encode(['errors' => $errors]);
 //     }
 // }
-
+include 'csp.php';
 session_start();
 include 'db.php';
 

@@ -113,11 +113,12 @@ form input[type="submit"]:hover {
     </style>
 </head>
 <body>
-    <div id="header"></div>
-    <main>
-        <section class="edit-profile">
-            <h2>Edit Profile</h2>
-            <?php
+<div id="header"></div>
+<main>
+<section class="edit-profile">
+    <h2>Edit Profile</h2>
+<?php
+include 'csp.php';
 session_start();
 
 // Regenerate session ID after login

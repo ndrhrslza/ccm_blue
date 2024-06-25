@@ -16,7 +16,9 @@
 
 </body>
 </html> -->
-
+<?php
+include 'csp.php';
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
