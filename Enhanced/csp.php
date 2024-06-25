@@ -1,7 +1,7 @@
 <?php
 header("Content-Security-Policy: default-src 'self'; " .
-       "script-src 'self' 'unsafe-inline' 'self' 'js/form.js' 'self' 'js/index.js' 'self' 'js/register.js' 'self' 'js/scripts.js'; " .
-       "style-src 'self' 'unsafe-inline' 'self' 'css/style.css' 'self' 'css/styles.css' 'self' 'css/styless.css' 'self' 'css/footer.css' 'self' 'css/delete.css' 'self' 'css/header.css' 'self' 'css/profile.css'; " .
+       "script-src 'self' 'js/form.js' 'js/index.js' 'js/register.js' 'js/scripts.js'; " .
+       "style-src 'self' 'css/style.css' 'css/styles.css' 'css/styless.css' 'css/footer.css' 'css/delete.css' 'css/header.css' 'css/profile.css'; " .
        "img-src 'self' data:; " .
        "connect-src 'self'; " .
        "frame-src 'self'; " .
