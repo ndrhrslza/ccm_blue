@@ -4,36 +4,12 @@
     <meta charset="utf-8">
     <title>Register</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script>
-        function hashPassword(event) {
-            event.preventDefault();
-            const passwordField = document.getElementById('password');
-            const confirmPasswordField = document.getElementById('confirmPassword');
-            const hashedPasswordField = document.getElementById('hashed_password');
-            const hashedConfirmPasswordField = document.getElementById('hashed_confirm_password');
-
-            // Hash the passwords using SHA-256
-            const hashedPassword = CryptoJS.SHA256(passwordField.value).toString();
-            const hashedConfirmPassword = CryptoJS.SHA256(confirmPasswordField.value).toString();
-            
-            // Set the hashed passwords to the hidden fields
-            hashedPasswordField.value = hashedPassword;
-            hashedConfirmPasswordField.value = hashedConfirmPassword;
-            
-            // Clear the plain text password fields
-            passwordField.value = '';
-            confirmPasswordField.value = '';
-            
-            // Submit the form
-            document.getElementById('registerForm').submit();
-        }
-    </script>
 </head>
+
 <body>
     <div class="center">
         <h1>Register</h1>
-        <form id="registerForm" method="post" action="register.php" onsubmit="hashPassword(event)">
+        <form method="post" action="register.php">
             <div class="txt_field">
                 <label>Username</label>
                 <input type="text" name="username" pattern="[a-zA-Z0-9_]{3,16}" placeholder="JohnDoe" required>
@@ -60,8 +36,6 @@
                 <input type="password" id="confirmPassword" name="confirmPassword" required>
                 <span></span>
             </div>
-            <input type="hidden" id="hashed_password" name="hashed_password">
-            <input type="hidden" id="hashed_confirm_password" name="hashed_confirm_password">
             <div class="forgot">Already have an account? <a href="login.php">Login</a></div>
             <input type="submit" value="Register">
             <div id="errorMessage" style="color: red;"></div>

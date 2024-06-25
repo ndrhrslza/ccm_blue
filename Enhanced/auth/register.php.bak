@@ -11,8 +11,8 @@ function sanitize_input($data) {
 $username = sanitize_input($_POST['username']);
 $email = sanitize_input($_POST['email']);
 $phone = sanitize_input($_POST['phone']);
-$hashed_password = sanitize_input($_POST['hashed_password']);
-$hashed_confirm_password = sanitize_input($_POST['hashed_confirm_password']); // Correct the name to match HTML form
+$password = sanitize_input($_POST['password']);
+$confirm_password = sanitize_input($_POST['confirmPassword']); // Correct the name to match HTML form
 
 // Validate email format
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -21,15 +21,24 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Check if the passwords are not empty
-if (empty($hashed_password) || empty($hashed_confirm_password)) {
+if (empty($password) || empty($confirm_password)) {
     header("Location: register.html?error=empty_passwords");
     exit();
 }
 
-// Check if the hashed passwords match
-if ($hashed_password !== $hashed_confirm_password) {
+// Check if the passwords match
+if ($password !== $confirm_password) {
     header("Location: register.html?error=passwords_do_not_match");
     exit();
+}
+
+// Hash the password with a salt
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+// Prepare the statement
+$stmt = $conn->prepare("INSERT INTO bookingsystem.users (id, username, email, phone, password) VALUES (?, ?, ?, ?, ?)");
+if (!$stmt) {
+    error_log("Prepare failed: ". $conn->error);
 }
 
 // Prepare the statement to check for existing users
@@ -59,7 +68,7 @@ if ($check_stmt->num_rows > 0) {
 $check_stmt->close();
 
 // Prepare the statement to insert the new user
-$insert_stmt = $conn->prepare("INSERT INTO bookingsystem.users (id, username, email, phone, password) VALUES (UUID(), ?, ?, ?, ?)");
+$insert_stmt = $conn->prepare("INSERT INTO bookingsystem.users (id, username, email, phone, password) VALUES (UUID(),?, ?, ?, ?)");
 if (!$insert_stmt) {
     error_log("Prepare failed: " . $conn->error);
     header("Location: register.html?error=prepare_failed");

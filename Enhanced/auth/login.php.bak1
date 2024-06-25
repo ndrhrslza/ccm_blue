@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['login_attempts'] = 0;
     } else  {
         $email = sanitize_input($_POST["email"]);
-        $hashed_password = sanitize_input($_POST["hashed_password"]);
+        $password = sanitize_input($_POST["password"]);
 
         // Check if user has exceeded the number of failed attempts
         if (!isset($_SESSION['login_attempts'])) {
@@ -45,10 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows > 0) {
             $user_data = $result->fetch_assoc();
-            $stored_hashed_password = $user_data["password"];
+            $hashed_password = $user_data["password"];
 
-            // Compare the hashed passwords
-            if ($hashed_password === $stored_hashed_password) {
+            // Verify password
+            if (password_verify($password, $hashed_password)) {
                 // Login successful, reset login attempts
                 $_SESSION['login_attempts'] = 0;
                 // Start session and redirect to profile page
@@ -79,6 +79,8 @@ if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] <= time()) {
     $_SESSION['login_attempts'] = 0; // Reset login attempts
     $error = ''; // Reset error message
 }
+
+// echo $_SESSION['login_attempts'];
 ?>
 
 <!DOCTYPE html>
@@ -87,49 +89,30 @@ if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] <= time()) {
     <meta charset="utf-8">
     <title>Login</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script>
-        function hashPassword(event) {
-            event.preventDefault();
-            const passwordField = document.getElementById('password');
-            const hashedPasswordField = document.getElementById('hashed_password');
-
-            // Hash the password using SHA-256
-            const hashedPassword = CryptoJS.SHA256(passwordField.value).toString();
-            
-            // Set the hashed password to the hidden field
-            hashedPasswordField.value = hashedPassword;
-            
-            // Clear the plain text password field
-            passwordField.value = '';
-            
-            // Submit the form
-            document.getElementById('loginForm').submit();
-        }
-    </script>
 </head>
 <body>
     <div class="center">
         <h1>Welcome</h1>
-        <form id="loginForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onsubmit="hashPassword(event)">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="txt_field">
                 <label>Email Address</label>
                 <input type="email" name="email" pattern="[a-z0-9._%+-]+@gmail+\.[a-z]{2,}$" required>
-                <span></span>
+                <span> </span>
             </div>
             <div class="txt_field">
                 <label>Password</label>
                 <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}" required>
-                <span></span>
+                <span> </span>
             </div>
-            <input type="hidden" id="hashed_password" name="hashed_password">
             <input type="submit" value="Login">
             <div class="users_signup">
                 Don't have an account? <a href="register.html">Register</a>
             </div>
 
             <div class="error"><?php echo $error; ?></div>
+
         </form>
     </div>
+    <script src="form.js"></script>
 </body>
 </html>
