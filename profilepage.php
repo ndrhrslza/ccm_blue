@@ -14,7 +14,7 @@
 session_start();
 // Include database connection securely
 require_once 'db.php';
-//include 'csp.php';
+include 'csp.php';
 
 if (isset($_SESSION['id'])) {
     // Regenerate session ID after login

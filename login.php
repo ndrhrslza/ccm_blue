@@ -1,6 +1,6 @@
 <?php
 session_start();
-//include 'csp.php';
+include 'csp.php';
 include 'db.php';
 
 // Function to sanitize user input

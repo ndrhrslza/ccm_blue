@@ -10,7 +10,7 @@
 <body>
     <div id="header"></div>
     <section class="booking-info">
-\        <?php
+        <?php
         include 'csp.php';
         include 'db.php';
         session_start();
