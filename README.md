@@ -1,15 +1,38 @@
 # Final Assessment: Web Security Application
 
+## Group name: Blue
+
+## Team Members
 | Name             | Matric No. |
 |------------------|------------|
-| John Doe         | A123456    |
-| Jane Smith       | A789012    |
+| Nadirah Binti Ros Liza       | 2027832    |
+| Sorfina Alyia Binti Jazrry       | 2017326   |
 
-## Introduction
+## Title of the Web Application: Cuti-Cuti Melaka
 
-This project is a web-based application designed to [briefly describe your web application here, e.g., facilitate online shopping, manage user accounts, etc.]. It provides users with [mention key functionalities or services provided by your application].
+## Introduction of the Web Application
 
-## Objectives
+Welcome to Cuti-Cuti Melaka, the gateway to exploring the rich history and vibrant culture of Melaka, Malaysia! This website is designed to make visitors' Melaka adventures seamless and memorable.
+
+The site introduces an innovative booking system, allowing travelers to easily reserve tickets for some of Melaka's most popular attractions:
+
+1. Taming Sari Tower: Visitors can experience breathtaking 360-degree views of the city.
+2. Klebang Beach: Travelers can relax on the picturesque shores of the Malacca Strait.
+3. A Famosa Water Park: Guests can enjoy thrilling water rides and family fun.
+4. Dutch Square: Tourists can immerse themselves in the heart of Melaka's colonial history.
+
+The user-friendly interface makes it simple for visitors to plan their itinerary and secure their spots at these must-visit locations.
+
+The website also features:
+
+- A stunning gallery showcasing Melaka's most popular destinations, giving visitors a preview of the wonders that await them.
+- A convenient "Contact Us" feature, ensuring that help is just a click away if travelers need assistance or have questions about their visit.
+
+Whether one is a history buff, a nature lover, or a thrill-seeker, Cuti-Cuti Melaka has something for everyone. The site helps visitors discover the magic of Melaka and create unforgettable memories in this UNESCO World Heritage city.
+
+Travelers can start planning their Melaka getaway today with Cuti-Cuti Melaka – the one-stop platform for an enchanting Malaysian adventure!
+
+## Objectives of the enhancements
 
 The primary objectives of this web application are:
 - [List the main objectives or goals of your application, e.g., to provide a secure platform for users to perform transactions, to protect user data, etc.]
