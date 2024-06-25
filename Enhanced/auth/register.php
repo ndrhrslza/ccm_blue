@@ -1,3 +1,8 @@
+<?php 
+session_start();
+require_once '../csrf.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -64,6 +69,7 @@
             <input type="hidden" id="hashed_confirm_password" name="hashed_confirm_password">
             <div class="forgot">Already have an account? <a href="login.php">Login</a></div>
             <input type="submit" value="Register">
+            <input type="hidden" name="_token" value="<?php echo $token;?>">
             <div id="errorMessage" style="color: red;"></div>
         </form>
     </div>

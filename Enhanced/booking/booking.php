@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+require_once '../csrf.php';
+?>
 
 <!DOCTYPE html>
 <html>
@@ -153,6 +156,7 @@
                     <div class="common_btns form_3_btns" style="display: none;">
                         <button type="button" class="btn_back">Back</button>
                         <button type="submit" class="btn_submit">Submit</button>
+                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                     </div>
                 </div>
             </form>

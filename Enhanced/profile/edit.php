@@ -42,15 +42,14 @@
             <?php
             session_start();
             include '../sop_validation.php';
+            require_once '../db.php';
+            include '../csp.php';
+            require_once '../csrf.php';
 
             // Regenerate session ID after login
             if (isset($_SESSION['id'])) {
                 session_regenerate_id();
             }
-
-            // Include database connection
-            require_once '../db.php';
-            include '../csp.php';
 
             // Function to sanitize user input
             function sanitize_input($data) {
@@ -157,6 +156,7 @@
                 <input type="password" id="confirm_password" name="confirm_password"><br><br>
 
                 <input type="submit" value="Update Profile">
+                <input type="hidden" name="_token" value="<?php echo $token;?>">
             </form>
         </section>
     </main>

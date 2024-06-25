@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+require_once '../csrf.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,6 +81,7 @@
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" pattern="^[a-zA-Z0-9\s.,!?@#%&*-_+=()]{10,100}$" required></textarea><br><br>
                 <center><input type="submit" value="Send" class="submitcontact"></center>
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             </form>
         </section>
     </main>
