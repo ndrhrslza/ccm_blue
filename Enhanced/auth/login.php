@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['login_attempts'] = 0;
                 // Start session and redirect to profile page
                 $_SESSION['logged_in'] = true;
+                $_SESSION['role'] = 'user';
                 $_SESSION["id"] = $user_data["id"];  // Store user ID in session
                 $_SESSION["email"] = $email;
                 $_SESSION["username"] = $user_data["username"];

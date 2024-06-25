@@ -15,7 +15,7 @@ session_start();
 
 
 // Regenerate session ID after login
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id']) && $_SESSION['role'] == 'user') {
     session_regenerate_id();
 
 // Include database connection securely
