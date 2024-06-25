@@ -1,103 +1,171 @@
 <?php
-
-
 session_start();
-include '../db.php';
-include '../csp.php';
-include '../sop_validation.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    function sanitize_input($data) {
-        return htmlspecialchars(stripslashes(trim($data)));
-    }
-
-    // Retrieve user_id from session
-    $user_id = $_SESSION["id"];
-    // echo $user_id;
-    // exit();
-
-    $name = sanitize_input($_POST['name']);
-    $email = sanitize_input($_POST['email']);
-    $phoneno = sanitize_input($_POST['phoneno']);
-    $adultTraveler = sanitize_input($_POST['adultTraveler']);
-    $childTraveler = sanitize_input($_POST['childTraveler']);
-    $destination = sanitize_input($_POST['destination']);
-    $totalAmount = sanitize_input($_POST['totalAmount']);
-    $payMethod = sanitize_input($_POST['payMethod']);
-    $bank = null;
-    $cardNumber = null;
-    $cardName = null;
-    $expiryDate = null;
-    $cvv = null;
-
-    $errors = [];
-
-    if (!preg_match("/^[A-Za-z\s]+$/", $name)) {
-        $errors[] = "Invalid name format.";
-    }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Invalid email format.";
-    }
-
-    if (!preg_match("/^\d{3}-\d{3}-\d{4}$/", $phoneno)) {
-        $errors[] = "Invalid phone number format.";
-    }
-
-    if (!filter_var($adultTraveler, FILTER_VALIDATE_INT, ["options" => ["min_range" => 1]])) {
-        $errors[] = "Number of adult travelers must be at least 1.";
-    }
-
-    if (!is_numeric($childTraveler) || $childTraveler < 0 || filter_var($childTraveler, FILTER_VALIDATE_INT) === false) {
-        $errors[] = "Number of child travelers must be a non-negative integer.";
-    }
-
-    if ($payMethod == 'internetbanking') {
-        $bank = sanitize_input($_POST['bank']);
-    } elseif ($payMethod == 'creditcard') {
-        $cardNumber = sanitize_input($_POST['cardNumber']);
-        $cardName = sanitize_input($_POST['cardName']);
-        $expiryDate = sanitize_input($_POST['expiryDate']);
-        $cvv = sanitize_input($_POST['cvv']);
-
-        if (!preg_match("/^\d{16}$/", $cardNumber)) {
-            $errors[] = "Invalid card number format.";
-        }
-
-        if (!preg_match("/^[A-Za-z\s]+$/", $cardName)) {
-            $errors[] = "Invalid card holder name format.";
-        }
-
-        if (!preg_match("/^(0[1-9]|1[0-2])\/?([0-9]{2})$/", $expiryDate)) {
-            $errors[] = "Invalid expiry date format.";
-        }
-
-        if (!preg_match("/^\d{3,4}$/", $cvv)) {
-            $errors[] = "Invalid CVV format.";
-        }
-    }
-
-    if (empty($errors)) {
-        $stmt = $conn->prepare("INSERT INTO booking ( name, email, phoneno, adultTraveler, childTraveler, destination, totalAmount, payMethod, bank, cardNumber, cardName, expiryDate, cvv, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssisdsssssss", $name, $email, $phoneno, $adultTraveler, $childTraveler, $destination, $totalAmount, $payMethod, $bank, $cardNumber, $cardName, $expiryDate, $cvv, $user_id);
-
-        if ($stmt->execute()) {
-            // echo "Booking successfully submitted!";
-            header("Location: ../profile/orderhistory.php");
-            exit();
-        } else {
-            // echo json_encode(['message' => 'Error: ' . $stmt->error]);
-            header("Location: ../error.php");
-            exit();
-        }
-
-        $stmt->close();
-        $conn->close();
-    } else {
-        echo json_encode(['errors' => $errors]);
-    }
-}
-
-
-
+require_once '../csrf.php';
 ?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Form | Cuti-Cuti Melaka</title>
+    <link rel="stylesheet" type="text/css" href="../booking/styless.css">
+    <script src="../homepage/index.js"></script>
+</head>
+<body>
+    <div id="header"></div>
+    <section style="background-image: url(../img/sungai.jpg); background-repeat: no-repeat; background-size: 100%; height: 600px;" data-section="menu">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <h1>Booking Form</h1>
+    <div class="tagline">
+        <p>"Book your trip with us, and enjoy your holiday to the fullest"</p>
+    </div>
+
+    <div class="wrapper">
+        <div class="header">
+            <ul>
+                <li class="active form_1_progessbar">
+                    <div>
+                        <p>1</p>
+                    </div>
+                </li>
+                <li class="form_2_progessbar">
+                    <div>
+                        <p>2</p>
+                    </div>
+                </li>
+                <li class="form_3_progessbar">
+                    <div>
+                        <p>3</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="header_title">
+            <ul>
+                <li class="progessbar_1_title"><p>Customer Details</p></li>
+                <li class="progessbar_2_title"><p>Travel Details</p></li>
+                <li class="progessbar_3_title"><p>Payment Details</p></li>
+            </ul>
+        </div>
+        <div class="form_wrap">
+            <form method="post" action="bookingform.php" enctype="multipart/form-data">
+                <div class="form_1 data_info">
+                    <div class="form_container">
+                        <div class="input_wrap">
+                            <label for="name">Name</label>
+                            <input type="text" class="input" id="name" name="name" pattern="[a-zA-Z\s]+" placeholder="Full name as in passport" required>
+                        </div>
+                        <div class="input_wrap">
+                            <label for="email">Email</label>
+                            <input type="email" class="input" id="email" name="email" placeholder="MyName@example.com" required>
+                        </div>
+                        <div class="input_wrap">
+                            <label for="phoneno">Phone Number</label>
+                            <input type="text" class="input" id="phoneno" name="phoneno" pattern="\d{3}-\d{3}-\d{4}" placeholder="010-203-5690" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form_2 data_info" style="display: none;">
+                    <div class="form_container">
+                        <div class="input_wrap">
+                            <label for="travellers">Number of Travelers?</label>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="adultTraveler">Adults</label><br>
+                                    <input type="number" id="adultTraveler" name="adultTraveler" placeholder="How many adults?">
+                                </div>
+                                <div class="form-group">
+                                    <label for="childTraveler">Children</label><br>
+                                    <input type="number" id="childTraveler" name="childTraveler" placeholder="How many child?">
+                                </div>
+                            </div>
+                            <br>    
+                        </div>
+                        <div class="input_wrap">
+                            <label for="destination">Where would you like to travel?</label>
+                            <select class="input" id="destination" name="destination">
+                                <option value="Taming Sari Tower">Taming Sari Tower</option>
+                                <option value="Klebang Beach">Klebang Beach</option>
+                                <option value="A Famosa Water Park">A Famosa Water Park</option>
+                                <option value="Dutch Square">Dutch Square</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form_3 data_info" style="display: none;">
+                    <div class="form_container">
+                        <div class="input_wrap">
+                            <label for="totalAmount">Total Amount</label>
+                            <span id="totalAmount"></span>
+                            <input type="hidden" id="totalAmount" name="totalAmount">
+                        </div>
+                        <div class="input_wrap">
+                            <label>What kind of payment arrangement you prefer?</label><br>
+                            <input type="radio" id="internetbanking" name="payMethod" value="internetbanking">
+                            <label for="internetbanking" class="container3">Internet Banking</label><br>
+                            <input type="radio" id="creditcard" name="payMethod" value="creditcard">
+                            <label for="creditcard" class="container3">Credit Card</label>
+                        </div>
+                        <div id="onlineBankingList" class="input_wrap" style="display: none;">
+                            <label for="bank">Select Bank</label><br>
+                            <select id="bank" name="bank">
+                                <option value="maybank">Maybank</option>
+                                <option value="cimb">CIMB Bank</option>
+                                <option value="publicbank">Public Bank</option>
+                                <option value="rhb">RHB Bank</option>
+                                <option value="hongleong">Hong Leong Bank</option>
+                                <option value="ambank">AmBank</option>
+                                <option value="bankislam">Bank Islam</option>
+                                <option value="affinbank">Affin Bank</option>
+                                <option value="bankrakyat">Bank Rakyat</option>
+                                <option value="alliancebank">Alliance Bank</option>
+                                <option value="uob">UOB Malaysia</option>
+                                <option value="standardchartered">Standard Chartered Malaysia</option>
+                                <option value="hsbc">HSBC Malaysia</option>
+                                <option value="ocbc">OCBC Bank</option>
+                            </select>
+                        </div>
+                        <div id="creditCardInfo" class="input_wrap" style="display: none;">
+                            <label for="cardNumber">Card Number</label><br>
+                            <input type="text" id="cardNumber" name="cardNumber"" placeholder="e.g., 1234567812345678" ><br><br>
+                            <label for="cardName">Card Holder Name</label><br>
+                            <input type="text" id="cardName" name="cardName"  placeholder="e.g., John Doe" ><br><br>
+                            <label for="expiryDate">Expiry Date</label><br>
+                            <input type="text" id="expiryDate" name="expiryDate"  placeholder="MM/YY" ><br><br>
+                            <label for="cvv">CVV</label><br>
+                            <input type="text" id="cvv" name="cvv" placeholder="e.g., 123"><br><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="btns_wrap">
+                    <div class="common_btns form_1_btns">
+                        <button type="button" class="btn_next">Next</button>
+                    </div>
+                    <div class="common_btns form_2_btns" style="display: none;">
+                        <button type="button" class="btn_back">Back</button>
+                        <button type="button" class="btn_next">Next</button>
+                    </div>
+                    <div class="common_btns form_3_btns" style="display: none;">
+                        <button type="button" class="btn_back">Back</button>
+                        <button type="submit" class="btn_submit">Submit</button>
+                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+<div id="footer"></div>
+</html>

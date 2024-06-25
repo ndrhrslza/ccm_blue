@@ -12,17 +12,15 @@
             <h2>Edit Profile</h2>
             <?php
 session_start();
+require_once '../db.php';
+include '../csp.php';
 include '../sop_validation.php';
+require_once '../csrf.php';
 
 // Regenerate session ID after login
 if (isset($_SESSION['id'])) {
     session_regenerate_id();
 }
-
-// Include database connection
-require_once '../db.php';
-include '../csp.php';
-include '../sop_validation.php';
 
 // Retrieve user information from database
 $user_id = $_SESSION['id'];
@@ -36,7 +34,7 @@ $result = $stmt->get_result();
 $user_data = $result->fetch_assoc();
 
 // Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" ) {
     // Validate input
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -123,6 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" id="confirm_password" name="confirm_password"><br><br>
 
                 <input type="submit" value="Update Profile">
+                <input type="hidden" name="_token" value="<?php echo $token;?>">
             </form>
         </section>
     </main>

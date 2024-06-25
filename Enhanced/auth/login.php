@@ -3,6 +3,7 @@ session_start();
 include '../db.php';
 include '../sop_validation.php';
 include '../csp.php';
+require_once '../csrf.php';
 
 // Function to sanitize user input
 function sanitize_input($data) {
@@ -16,9 +17,10 @@ function handle_lockout() {
 
 // Initialize error message
 $error = '';
+$success = false;
 
 // Handle login form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($_POST['csrf_token'])){
     // Check if account is currently locked out
     if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] > time()) {
         $seconds_remaining = $_SESSION['lockout_time'] - time();
@@ -71,6 +73,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = "Too many failed attempts. Account locked. Please try again in 10 seconds.";
         }
     }
+
+    if ($success){
+        unset($_SESSION['csrf_token']);
+        unset($_SESSION['token_expire']);
+        echo "<script>alert('Login Successful!')</script>";
+        exit();
+    }
 }
 
 // Check if the lockout period has expired
@@ -91,6 +100,10 @@ if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] <= time()) {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <?php 
+    if(!empty($csrf_error)){
+        echo "<div class='alert alert-danger'><h2>".$csrf_error."</h2></div>";
+    }?>
     <div class="center">
         <h1>Welcome</h1>
         <form method="post" action="">
@@ -104,9 +117,10 @@ if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] <= time()) {
                 <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}" required>
                 <span> </span>
             </div>
+            <input type="hidden" name="_token" value="<?php echo $token;?>">
             <input type="submit" value="Login">
             <div class="users_signup">
-                Don't have an account? <a href="register.html">Register</a>
+                Don't have an account? <a href="register.php">Register</a>
             </div>
 
             <div class="error"><?php echo $error; ?></div>
