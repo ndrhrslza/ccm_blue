@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'csp.php';
 include 'sop_validation.php';
 
 $response = array('isLoggedIn' => false);

@@ -11,12 +11,12 @@
         <section class="profile-info">
             <h2>Account Information</h2>
             <?php
+            include 'csp.php';
 session_start();
 
 // Regenerate session ID after login
 if (isset($_SESSION['id'])) {
     session_regenerate_id();
-}
 
 // Include database connection securely
 require_once 'db.php';
@@ -40,6 +40,10 @@ while ($row = $result->fetch_assoc()) {
     echo "<li><strong>Phone Number:</strong> ". htmlspecialchars($row["phone"]). "</li>";
     echo "</ul>";
 }
+}else {
+echo "<p>You are not logged in. Please log in to view this page.</p>";
+exit();}
+
 ?>
     </section>
     </main>
