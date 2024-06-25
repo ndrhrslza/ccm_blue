@@ -6,7 +6,7 @@ include '../db.php';
 include '../csp.php';
 include '../sop_validation.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION['logged_in'] && $_SESSION['role'] === 'user') {
     function sanitize_input($data) {
         return htmlspecialchars(stripslashes(trim($data)));
     }
@@ -96,6 +96,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo json_encode(['errors' => $errors]);
     }
+}else if ( $_SESSION['role'] === 'guest'){
+    echo "<script>alert('Please login to book a trip!')</script>";
+    echo "<script>window.location.href='../auth/login.php'</script>";
+    
 }
 
 
