@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'csp.php';
 include 'db.php';
 include 'sop_validation.php';
 

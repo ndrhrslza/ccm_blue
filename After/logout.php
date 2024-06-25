@@ -84,6 +84,7 @@ function updateAuthLink(isLoggedIn) {
 
 <?php
 session_start();
+include 'csp.php';
 include 'sop_validation.php';
 // Clear all session data
 session_unset();
