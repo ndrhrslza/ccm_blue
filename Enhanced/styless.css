@@ -26,42 +26,9 @@ body{
 	position: relative;
 }
 
-.navigation ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: var(--header-clr);
-}
-              
-.navigation li{
-    float: left;
-}
-              
-.navigation li a{
-    display: block;
-	color: whitesmoke;
-	font-family: Roboto;
-	font-size: small;
-	text-align: center;
-	padding: 11px 17px;
-	text-decoration: none;
-}
-  
-.navigation li a:hover{
-    background-color:#A7C4D9;
-}
-    
-#right{
-	float:right;
-	display: block;
-	color: whitesmoke;
-	font-family: Roboto;
-	font-size: small;
-	text-align: center;
-	padding:11px 17px;
-	text-decoration: none;
-}
+
+
+
 
 img {
     width: 100%;

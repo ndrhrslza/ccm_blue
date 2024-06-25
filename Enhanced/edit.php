@@ -22,6 +22,7 @@ if (isset($_SESSION['id'])) {
 // Include database connection
 require_once 'db.php';
 include 'csp.php';
+include 'sop_validation.php';
 
 // Retrieve user information from database
 $user_id = $_SESSION['id'];
