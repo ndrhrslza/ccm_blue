@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'db.php';
+include 'sop_validation.php';
 
 if (isset($_SESSION['id'])) {
   $user_id = $_SESSION['id'];

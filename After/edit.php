@@ -119,6 +119,7 @@ form input[type="submit"]:hover {
             <h2>Edit Profile</h2>
             <?php
 session_start();
+include 'sop_validation.php';
 
 // Regenerate session ID after login
 if (isset($_SESSION['id'])) {

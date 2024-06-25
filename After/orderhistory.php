@@ -10,9 +10,10 @@
 <body>
     <div id="header"></div>
     <section class="booking-info">
-\        <?php
+        <?php
         include 'db.php';
         session_start();
+        include 'sop_validation.php';
 
         if (isset($_SESSION['id'])) {
             session_regenerate_id();
@@ -69,10 +70,46 @@
             echo "</div>";
             echo "</div>";
         } else {
-            echo "<p>No bookings found.</p>";
+            // echo "<p>No bookings found.</p>";
+            echo "<div class='receipt-container'>";
+            echo "<div class='receipt-header'>";
+            echo "</div>";
+
+            echo "<div class='receipt-details'>";
+            echo "<h2>Order History</h2>";
+            echo "</div>";
+
+            echo "<div class='order-details'>";
+            echo "<table>";
+            echo "<thead>";
+            echo "<tr>";
+            echo "<th>Order ID</th>";
+            echo "<th>Product Name</th>";
+            echo "<th>Quantity</th>";
+            echo "<th>Total Amount</th>";
+            echo "<th>Payment Method</th>";
+            echo "<th>Order Date</th>";
+            echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
+
+            echo "<tr>";
+                echo "<td>"  ."</td>";
+                echo "<td>" . "</td>";
+                echo "<td>" . "</td>";
+                echo "<td>"  . "</td>";
+                echo "<td>" . "</td>";
+                echo "<td>" . "</td>";
+                echo "</tr>";
+            echo "</tbody>";
+            echo "</table>";
         }
-        ?>
+        ?> 
     </section>
+
+  
     <div id="footer"></div>
 </body>
 </html>
+
+

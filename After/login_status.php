@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'sop_validation.php';
 
 $response = array('isLoggedIn' => false);
 

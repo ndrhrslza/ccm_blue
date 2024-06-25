@@ -3,6 +3,7 @@
 
 session_start();
 include 'db.php';
+include 'sop_validation.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function sanitize_input($data) {
@@ -79,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             // echo "Booking successfully submitted!";
-            header("Location: index.html");
+            header("Location: orderhistory.php");
             exit();
         } else {
             echo json_encode(['message' => 'Error: ' . $stmt->error]);

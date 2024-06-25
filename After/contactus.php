@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'db.php';
+include 'sop_validation.php';
 
 // Function to sanitize input data
 function sanitize_input($data) {
