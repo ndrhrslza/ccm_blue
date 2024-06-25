@@ -1,5 +1,6 @@
 <?php
-//include 'csp.php';
+include 'csp.php';
+include 'sop_validation.php';
 
 $servername = "localhost";
 $username = "root";

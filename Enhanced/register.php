@@ -1,4 +1,5 @@
 <?php
+include 'csp.php';
 require_once 'db.php';
 
 // Function to sanitize user input

@@ -14,6 +14,7 @@
         include 'db.php';
         session_start();
         include 'sop_validation.php';
+        include 'csp.php';
 
         if (isset($_SESSION['id'])) {
             session_regenerate_id();

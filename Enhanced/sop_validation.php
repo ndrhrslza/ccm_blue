@@ -1,4 +1,5 @@
 <?php
+include 'csp.php';
 // sop_validation.php
 
 // Validate Referer Header

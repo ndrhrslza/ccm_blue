@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'db.php';
+include 'csp.php';
 include 'sop_validation.php';
 
 if (isset($_SESSION['id'])) {
