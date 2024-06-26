@@ -61,11 +61,7 @@ To ensure the security of our web application, we have considered the following 
    
 8. **Database Security Principles**: Employ parameterized queries and prepared statements to prevent malicious SQL code from being executed in the database.
 
-9.  **Security Headers**: HTTP security headers (e.g., Strict-Transport-Security, X-Content-Type-Options, etc.) are properly configured to enhance overall security posture.
-
-10. **Regular Security Audits**: Periodic security audits and vulnerability assessments are conducted to identify and remediate potential security issues.
-
-11. **User Education**: Users are educated about best security practices, such as choosing strong passwords and enabling two-factor authentication (2FA).
+9.  **Security Headers**: HTTP security headers are properly configured to enhance overall security posture.
 
 Thus, we have implemented a comprehensive set of security measures to protect user data and ensure a secure browsing experience. Below is a detailed description of the security enhancements integrated into the application:
 
