@@ -1,3 +1,12 @@
+<!--
+Prepared by: Nadirah
+This file handle user registration form submission
+It will sanitize the user input and validate the email format
+It will also check if the passwords are not empty and if they match
+If the user already exists, an error message will be displayed
+If the registration is successful, the user will be redirected to the login page
+-->
+
 <?php 
 session_start();
 require_once '../csrf.php';

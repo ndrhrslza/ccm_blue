@@ -1,3 +1,9 @@
+<!--
+Prepared by Nadirah, Sorfina
+This file displays the order history of the user.
+It retrieves the order history from the database and displays it in a table.
+-->
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -1,3 +1,10 @@
+<!--
+Prepared by Nadirah
+Edit Profile page for users to update their profile information
+Users can update their username, email, phone number, and password
+Passwords are hashed before being stored in the database for security
+-->
+
 <!DOCTYPE html>
 <html>
 <head>

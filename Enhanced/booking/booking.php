@@ -1,3 +1,9 @@
+<!--
+Prepared by: Sorfina
+This file handle booking form submission
+CSRF token is generated and validated to prevent CSRF attacks (Prepared by: Nadirah)
+-->
+
 <?php
 session_start();
 require_once '../csrf.php';

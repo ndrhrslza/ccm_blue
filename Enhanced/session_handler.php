@@ -1,3 +1,5 @@
+<!--Session Handler (Prepared by Sorfina)-->
+
 <?php
 session_start();
 

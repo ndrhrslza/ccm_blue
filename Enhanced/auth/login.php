@@ -1,3 +1,10 @@
+<!--
+Login page for users to login to their account (Prepared by: Nadirah)
+It will check if the user has exceeded the number of failed login attempts and lock the account if necessary (Prepared by: Sorfina)
+If the user successfully logs in, the user will be redirected to the homepage (Prepared by: Nadirah) 
+-->
+
+
 <?php
 session_start();
 include '../db.php';

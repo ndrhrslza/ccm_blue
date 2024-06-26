@@ -1,3 +1,9 @@
+// Prepared by: Nadirah
+// This file is for the form page.
+// It contains the password strength checker and the password match checker.
+// The password strength checker will display a message below the password input field to indicate whether the password is strong or not.
+// The password match checker will display an error message if the passwords do not match.
+
 document.addEventListener('DOMContentLoaded', function() {
     const passwordInput = document.querySelector('input[name="password"]');
     const message = document.createElement('div');
