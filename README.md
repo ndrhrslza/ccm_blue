@@ -73,7 +73,7 @@ Thus, we have implemented a comprehensive set of security measures to protect us
    - ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/772c1eec-d5ff-4d9a-a19c-c222a174816b)
      (form.php)
    - ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/d5af6e48-c635-49d9-a60d-e8c38762436a)
-     (login_status.php)
+     <center>(login_status.php)</center>
      
 
 3. **Comparison Login with Hashed Password**:
