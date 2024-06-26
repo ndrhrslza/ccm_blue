@@ -1,3 +1,11 @@
+<!-- 
+This file is used to handle the contact form submission. (Prepared by Nadirah)
+CSRF token is generated and validated to prevent CSRF attacks (Prepared by Nadirah)
+It will sanitize the user input and validate the user input. (Prepared by Nadirah)
+Server-side validation is performed to ensure that the user input is valid. (Prepared by Sorfina)
+If the form submission is successful, it will pass the user input to the database. (Prepared by Sorfina)
+-->
+
 <?php
 session_start();
 include '../db.php';

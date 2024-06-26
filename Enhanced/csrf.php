@@ -1,3 +1,5 @@
+<!-- CSRF token file (Prepared by Nadirah) -->
+
 <?php
 $csrf_error = "";
 if (empty($_SESSION['csrf_token'])) {

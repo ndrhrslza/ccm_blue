@@ -1,3 +1,4 @@
+<!--Database file-->
 <?php
 include 'csp.php';
 include 'sop_validation.php';

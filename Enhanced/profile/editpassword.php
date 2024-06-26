@@ -1,3 +1,9 @@
+<!--
+This file allows users to edit their password.
+The user must enter their current password, new password, and confirm the new password.
+The user's password is hashed using SHA-256 before being stored in the database. (Prepared by Sorfina)
+-->
+
 <!DOCTYPE html>
 <html>
 <head>

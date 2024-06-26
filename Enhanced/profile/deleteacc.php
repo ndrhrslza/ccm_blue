@@ -1,3 +1,9 @@
+<!--
+Prepared by Nadirah
+This file handle the deletion of user account.
+It will delete the user account from the database and log the user out, return user to login page.
+Session is destroyed after the account is deleted.
+-->
 <?php
 session_start();
 include '../db.php';

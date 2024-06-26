@@ -1,3 +1,9 @@
+//Prepared by: Sorfina
+//This file handle the form validation for the booking page.
+//It contains the form validation for each step of the booking process.
+//It also contains the logic to show/hide the forms based on the user's input.
+//It also contains the logic to check if the user is logged in before proceeding to the next step.
+//It also contains the logic to validate the payment method and credit card details.
 
 document.addEventListener("DOMContentLoaded", function() {
     const form1 = document.querySelector('.form_1');

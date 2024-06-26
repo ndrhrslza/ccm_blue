@@ -1,19 +1,6 @@
+<!--This file will check if the user is logged in and return the user role. (Prepared by Sorfina)-->
+
 <?php
-// session_start();
-// include '../sop_validation.php';
-// include '../csp.php';
-
-// $response = array('isLoggedIn' => false);
-
-// if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && $_SESSION['role'] === 'user'){
-//     $response['isLoggedIn'] = true;
-// } else {
-//     $response['isLoggedIn'] = false;
-    
-// }
-
-// echo json_encode($response);
-
 session_start();
 include '../sop_validation.php';
 include '../csp.php';

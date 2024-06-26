@@ -1,3 +1,5 @@
+<!-- Profile page for users to view their account information (Prepared by Nadirah)-->
+
 <!DOCTYPE html>
 <html>
 <head>
