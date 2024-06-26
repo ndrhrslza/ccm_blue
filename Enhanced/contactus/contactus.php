@@ -71,7 +71,7 @@ require_once '../csrf.php';
         </section>
         <section class="contact-form">
             <h2><center>We'd love to hear from you!</center></h2>
-            <form id="contactForm" action="contactus.php" method="post">
+            <form id="contactForm" action="contact.php" method="post">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" pattern="^[a-zA-Z\s]{4,15}$" required><br><br>
                 <label for="email">Email:</label>

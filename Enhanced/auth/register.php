@@ -38,7 +38,7 @@ require_once '../csrf.php';
 <body>
     <div class="center">
         <h1>Register</h1>
-        <form id="registerForm" method="post" action="register.php" onsubmit="hashPassword(event)">
+        <form id="registerForm" method="post" action="form.php" onsubmit="hashPassword(event)">
             <div class="txt_field">
                 <label>Username</label>
                 <input type="text" name="username" pattern="[a-zA-Z0-9_]{3,16}" placeholder="JohnDoe" required>

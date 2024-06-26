@@ -10,18 +10,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION['logged_in'] && $_SESSION[
         return htmlspecialchars(stripslashes(trim($data)));
     }
 
+    
+
     // Retrieve user_id from session
     $user_id = $_SESSION["id"];
-    // echo $user_id;
-    // exit();
+    
 
     //check if the CSRF token is valid 
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        echo $_POST['csrf_token'];
-        echo $_SESSION['csrf_token'];
-        // header("Location: boooking.php?error=invalid_csrf_token");
-    exit();
+        // echo $_POST['csrf_token'];
+        // echo $_SESSION['csrf_token'];
+        header("Location: boooking.php?error=invalid_csrf_token");
+        exit();
     }
+
+
 
     $name = sanitize_input($_POST['name']);
     $email = sanitize_input($_POST['email']);
