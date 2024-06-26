@@ -1,21 +1,10 @@
-<!-- <!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="utf-8">
-    <title>Logout</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+<!-- 
+Logout page for the Enhanced version of the website
+This page will clear all session data and destroy the session (Prepared by Nadirah)
+It will also display a message to inform the user that they have been successfully logged out (Prepared by Sorfina)
+The user can then click on a link to return to the homepage
+  -->
 
-<body>
-<div class="center">
-    <h1>Logout</h1>
-    <p>You have been successfully logged out.</p>
-    <p>Click <a href="index.html">here</a> to return to the homepage.</p>
-    
-</div>
-
-</body>
-</html> -->
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

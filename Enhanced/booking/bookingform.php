@@ -1,3 +1,11 @@
+<!--
+Prepared by: Sorfina
+This file handle booking form submission to booking table in bookingsystem database
+CSRF token is generated and validated to prevent CSRF attacks (Prepared by: Nadirah)
+-->
+
+
+
 <?php
 session_start();
 include '../db.php';

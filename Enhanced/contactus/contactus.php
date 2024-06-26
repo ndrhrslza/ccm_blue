@@ -1,3 +1,8 @@
+<!--
+This file display the contact form for users to submit their inquiries. (Prepared by Nadirah)
+CSRF token is generated and validated to prevent CSRF attacks (Prepared by Nadirah)
+The script will validate the user input and display an alert message if the input is invalid. (Prepared by Sorfina)
+-->
 <?php
 session_start();
 require_once '../csrf.php';

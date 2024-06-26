@@ -1,3 +1,5 @@
+<!--Same Origin Policy Validation (Prepared by Sorfina)-->
+
 <?php
 include 'csp.php';
 // sop_validation.php
