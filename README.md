@@ -70,7 +70,11 @@ Thus, we have implemented a comprehensive set of security measures to protect us
 
 2. **Encoding**:
    - Encoding is used to ensure data is securely transmitted and displayed, preventing injection attacks and XSS vulnerabilities by encoding output data.
-   - ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/772c1eec-d5ff-4d9a-a19c-c222a174816b) (form.php)
+   - ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/772c1eec-d5ff-4d9a-a19c-c222a174816b)
+     (form.php)
+   - ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/d5af6e48-c635-49d9-a60d-e8c38762436a)
+     (login_status.php)
+     
 
 3. **Comparison Login with Hashed Password**:
    - User login credentials are verified by comparing the entered password with the stored hashed password, ensuring secure authentication processes.
