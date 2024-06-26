@@ -177,6 +177,7 @@ if ($_SESSION['login_attempts'] >= 3) {
 
 12. **Hashing and Sanitizing Input**:
     - User inputs are hashed to enhance password security, and sanitized to prevent injection attacks.
+      
       <br>**sanitizing input in  `form.php`** <br>
       ```php
       // Function to sanitize user input
@@ -242,7 +243,28 @@ if ($_SESSION['login_attempts'] >= 3) {
       ```
 13. **CSRF Token Implementation**:
     - Cross-Site Request Forgery (CSRF) tokens are used to protect against CSRF attacks by ensuring that requests are legitimate and originate from authenticated users.
-      
+
+      <br>**csrf token file in `csrf.php`**</br>
+      ```php
+      <?php
+      $csrf_error = "";
+      if (empty($_SESSION['csrf_token'])) {
+      $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+      $_SESSION["token_expire"] = time() + 1800; // 30 minutes = 1800 secs}
+
+      $token = $_SESSION['csrf_token'];
+      $token_expire = $_SESSION["token_expire"];
+      ```
+      <br>**Example include `csrf.php` in other related file like `contactus.php` **</br>
+      ```php
+      <?php
+      session_start();
+      require_once '../csrf.php';?>
+
+      //CSRF token is generated and validated to prevent CSRF attacks
+      <center><input type="submit" value="Send" class="submitcontact"></center>
+      <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+      ```
 
 14. **Manipulation in Booking System**:
     - Measures are taken to prevent unauthorized manipulation of the booking system, ensuring the integrity of bookings and related transactions.
@@ -269,11 +291,53 @@ if ($_SESSION['login_attempts'] >= 3) {
       ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/0a278027-8e8c-44e6-af62-df51da9954b3)
 
 17. **Content Security Policy (CSP)**:
-    - A CSP is implemented to control the resources the browser is allowed to load, reducing the risk of XSS and data injection attacks.
+    - A CSP is implemented to control the resources the browser is allowed to load, reducing the risk of XSS and data injection attacks. In separate file, then will be called in all php files. 
+
+      <br>**Content-Security-Policy header in `csp.php`**</br>
+      ```php
+      <?php
+      // header("Content-Security-Policy: default-src 'self'; " .
+      //        "script-src 'self' 'js/form.js' 'js/index.js' 'js/register.js' 'js/scripts.js'; " .
+      //        "style-src 'self' 'css/style.css' 'css/styles.css' 'css/styless.css' 'css/footer.css' 'css/delete.css' 'css/header.css' 'css/profile.css'; " .
+      //        "img-src 'self' data:; " .
+      //        "connect-src 'self'; " .
+      //        "frame-src 'self'; " .
+      //        "object-src 'none'; " .
+      //        "base-uri 'self'; " .
+      //        "form-action 'self'; " .
+      //        "frame-ancestors 'self';");
+      ?>```
 
 18. **Idle Timeout**:
     - Sessions are configured to expire after a period of inactivity to reduce the risk of unauthorized access from unattended sessions.
-    - 
+
+      <br>**Session timeout in `session_handler.php`**</br>
+      ```php
+      <?php
+      session_start();
+      
+      // Set timeout duration (e.g., 1800 seconds = 30 minutes)
+      $timeout_duration = 1800;
+      
+      // Check if the last activity timestamp is set
+      if (isset($_SESSION['LAST_ACTIVITY'])) {
+          // Calculate the session's lifetime
+          $session_lifetime = time() - $_SESSION['LAST_ACTIVITY'];
+      
+          // If the session has been idle for too long, destroy it
+          if ($session_lifetime > $timeout_duration) {
+              session_unset();     // Unset $_SESSION variable for the run-time 
+              session_destroy();   // Destroy session data in storage
+              header("Location: ../idle.php"); // Redirect to logout page or any other page
+              exit();
+          }
+      }
+      
+      // Update last activity timestamp
+      $_SESSION['LAST_ACTIVITY'] = time();
+      ?>
+      ```
+      
 
 19. **Hide Indexes**:
     - Directory listings are disabled to prevent attackers from viewing the structure of directories and files on the server. in `httpd.conf`
