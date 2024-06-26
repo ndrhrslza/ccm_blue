@@ -69,18 +69,25 @@ Thus, we have implemented a comprehensive set of security measures to protect us
    - Each user is assigned a unique, randomly generated ID upon registration to mitigate risks associated with predictable user IDs.
 
 2. **Encoding**:
-   - Encoding is used to ensure data is securely transmitted and displayed, preventing injection attacks and XSS vulnerabilities by encoding output data.
-   - ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/772c1eec-d5ff-4d9a-a19c-c222a174816b)
-     (form.php)
-   - ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/d5af6e48-c635-49d9-a60d-e8c38762436a)
-     <center>(login_status.php)</center>
-     
+   - Encoding is used to ensure data is securely transmitted and displayed, preventing injection attacks and XSS vulnerabilities by encoding output data.<br>
+     **Encoding in `form.php`** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/55957636-ca00-47e3-b6a3-4c52bfac52b9)
+     <br>
+     **Encoding in `login_status.php`**<br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/6d40fa21-e95a-4d3d-8310-545eea959a02)
+           
 
 3. **Comparison Login with Hashed Password**:
-   - User login credentials are verified by comparing the entered password with the stored hashed password, ensuring secure authentication processes.
-
+   - User login credentials are verified by comparing the entered password with the stored hashed password, ensuring secure authentication processes.<br>
+    **Comparison in 'login.php'** <br>
+    ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/df8bfb45-e30b-4056-a3d2-6651d533e681)
+     <br>**Comparison in 'editpassword.php'** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/05089cf4-7c88-44bb-ae07-5a5d649f853e)
+     
 4. **Using Strong Hashing Algorithms**:
-   - Strong hashing algorithms such as bcrypt are used to hash passwords, making it computationally difficult for attackers to reverse-engineer passwords.
+   - Strong hashing algorithms such as SHA256 are used to hash passwords, making it computationally difficult for attackers to reverse-engineer passwords. <br>
+     **Strong hashing algorithm: SHA256** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/34ddd336-2e14-4e97-9c29-a69397758622)
 
 5. **SSL (Secure Sockets Layer)**:
    - SSL is implemented to encrypt data transmitted between the server and client, ensuring the confidentiality and integrity of sensitive information.
