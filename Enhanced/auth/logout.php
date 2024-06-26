@@ -27,8 +27,8 @@
 <body>
 <div class="center">
     <h1>Logout</h1>
-    <p>You have been successfully logged out.</p>
-    <p>Click <a href="../homepage/index.html">here</a> to return to the homepage.</p>
+    <center><p>You have been successfully logged out.</p>
+    <p>Click <a href="../homepage/index.html">here</a> to return to the homepage.</p></center>
 </div>
 
 <script>
@@ -86,6 +86,7 @@ function updateAuthLink(isLoggedIn) {
 session_start();
 include '../sop_validation.php';
 include '../csp.php';
+
 // Clear all session data
 session_unset();
 
