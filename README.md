@@ -67,6 +67,10 @@ Thus, we have implemented a comprehensive set of security measures to protect us
 
 1. **ID Random Generation in User Table**:
    - Each user is assigned a unique, randomly generated ID upon registration to mitigate risks associated with predictable user IDs.
+     <br>**UUID() in `form.php`** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/d95ed734-88c0-457b-8ff3-2e059ad3810b)
+     <br>**Result of UUID() in database** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/1704b0d1-838b-447e-ad68-7e7d6fb5dff5)
 
 2. **Encoding**:
    - Encoding is used to ensure data is securely transmitted and displayed, preventing injection attacks and XSS vulnerabilities by encoding output data.<br>
@@ -89,11 +93,33 @@ Thus, we have implemented a comprehensive set of security measures to protect us
      **Strong hashing algorithm: SHA256** <br>
      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/34ddd336-2e14-4e97-9c29-a69397758622)
 
-5. **SSL (Secure Sockets Layer)**:
-   - SSL is implemented to encrypt data transmitted between the server and client, ensuring the confidentiality and integrity of sensitive information.
+5. **SSL Certificate for Localhost (Secure HTTPS Connection)**:
+   - An SSL certificate is essential for creating a secure HTTPS connection on localhost. It encrypts data transmitted between the server and client, ensuring the confidentiality and integrity of sensitive information.<br>
+     <br>**Cert files in the local machine** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/204eea3e-d3f2-4335-a7c9-97184400dd09)
+     **HTTPS on the browser** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/f165fac5-780b-4964-ab50-ca58d74ec083)
 
 6. **Account Lockout After Three Failed Attempts**:
    - To prevent brute force attacks, user accounts are temporarily locked after three consecutive failed login attempts.
+```php
+// Check if account is currently locked out
+if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] > time()) {
+    $seconds_remaining = $_SESSION['lockout_time'] - time();
+    $error = "Account locked. Please try again in {$seconds_remaining} seconds.";
+    $_SESSION['login_attempts'] = 0;
+}
+
+// Increment login attempts
+$_SESSION['login_attempts']++;
+
+// Check if login attempts exceed threshold
+if ($_SESSION['login_attempts'] >= 3) {
+    handle_lockout();
+    $error = "Too many failed attempts. Account locked. Please try again in 10 seconds.";
+}
+```
+
 
 7. **Encrypted Password During Submission**:
    - Passwords are encrypted during form submission to prevent interception by malicious actors during transmission.
