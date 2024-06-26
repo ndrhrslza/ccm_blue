@@ -65,7 +65,7 @@ require_once '../csrf.php';
                         </div>
                         <div class="input_wrap">
                             <label for="email">Email</label>
-                            <input type="email" class="input" id="email" name="email" placeholder="MyName@example.com" required>
+                            <input type="email" class="input" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z]+\.[a-z]{2,}$" placeholder="MyName@example.com" required>
                         </div>
                         <div class="input_wrap">
                             <label for="phoneno">Phone Number</label>
