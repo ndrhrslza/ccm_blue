@@ -1,4 +1,5 @@
     <?php
+    session_start();
     include '../csp.php';
     require_once '../db.php';
     require_once '../csrf.php';
@@ -22,19 +23,19 @@
 
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: register.html?error=invalid_email");
+        header("Location: register.php?error=invalid_email");
         exit();
     }
 
     // Check if the passwords are not empty
     if (empty($hashed_password) || empty($hashed_confirm_password)) {
-        header("Location: register.html?error=empty_passwords");
+        header("Location: register.php?error=empty_passwords");
         exit();
     }
 
     // Check if the hashed passwords match
     if ($hashed_password !== $hashed_confirm_password) {
-        header("Location: register.html?error=passwords_do_not_match");
+        header("Location: register.php?error=passwords_do_not_match");
         exit();
     }
 
@@ -42,14 +43,14 @@
     $check_stmt = $conn->prepare("SELECT id FROM bookingsystem.users WHERE username = ? OR email = ?");
     if (!$check_stmt) {
         error_log("Prepare failed: " . $conn->error);
-        header("Location: register.html?error=prepare_failed");
+        header("Location: register.php?error=prepare_failed");
         exit();
     }
 
     $check_stmt->bind_param("ss", $username, $email);
     if (!$check_stmt->execute()) {
         error_log("Execute failed: " . $check_stmt->error);
-        header("Location: register.html?error=execute_failed");
+        header("Location: register.php?error=execute_failed");
         exit();
     }
 
@@ -57,7 +58,7 @@
 
     // Check if a row with the same username or email already exists
     if ($check_stmt->num_rows > 0) {
-        header("Location: register.html?error=user_exists");
+        header("Location: register.php?error=user_exists");
         exit();
     }
 
@@ -68,7 +69,7 @@
     $insert_stmt = $conn->prepare("INSERT INTO bookingsystem.users (id, username, email, phone, password) VALUES (UUID(), ?, ?, ?, ?)");
     if (!$insert_stmt) {
         error_log("Prepare failed: " . $conn->error);
-        header("Location: register.html?error=prepare_failed");
+        header("Location: register.php?error=prepare_failed");
         exit();
     }
 
@@ -76,7 +77,7 @@
     $insert_stmt->bind_param("ssss", $username, $email, $phone, $hashed_password);
     if (!$insert_stmt->execute()) {
         error_log("Execute failed: " . $insert_stmt->error);
-        header("Location: register.html?error=execute_failed");
+        header("Location: register.php?error=execute_failed");
         exit();
     }
 

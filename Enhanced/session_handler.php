@@ -2,7 +2,7 @@
 session_start();
 
 // Set timeout duration (e.g., 1800 seconds = 30 minutes)
-$timeout_duration = 20;
+$timeout_duration = 1800;
 
 // Check if the last activity timestamp is set
 if (isset($_SESSION['LAST_ACTIVITY'])) {

@@ -48,9 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($_POST['csrf_token'])) {
         if ($result->num_rows > 0) {
             $user_data = $result->fetch_assoc();
             $stored_hashed_password = $user_data["password"];
-
+           
             // Compare the hashed passwords
             if ($hashed_password === $stored_hashed_password) {
+                
                 // Login successful, reset login attempts
                 $_SESSION['login_attempts'] = 0;
                 // Start session and redirect to profile page
@@ -142,7 +143,7 @@ if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] <= time()) {
             <input type="hidden" name="_token" value="<?php echo $token;?>">
             <input type="submit" value="Login">
             <div class="users_signup">
-                Don't have an account? <a href="register.html">Register</a>
+                Don't have an account? <a href="register.php">Register</a>
             </div>
 
             <div class="error"><?php echo $error; ?></div>

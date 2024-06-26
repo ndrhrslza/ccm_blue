@@ -56,7 +56,7 @@ require_once '../csrf.php';
             </ul>
         </div>
         <div class="form_wrap">
-            <form method="post" action="booking.php" enctype="multipart/form-data">
+            <form method="post" action="bookingform.php" enctype="multipart/form-data">
                 <div class="form_1 data_info">
                     <div class="form_container">
                         <div class="input_wrap">
