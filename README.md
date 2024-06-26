@@ -83,9 +83,9 @@ Thus, we have implemented a comprehensive set of security measures to protect us
 
 3. **Comparison Login with Hashed Password**:
    - User login credentials are verified by comparing the entered password with the stored hashed password, ensuring secure authentication processes.<br>
-    **Comparison in 'login.php'** <br>
+    **Comparison in `login.php`** <br>
     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/df8bfb45-e30b-4056-a3d2-6651d533e681)
-     <br>**Comparison in 'editpassword.php'** <br>
+     <br>**Comparison in `editpassword.php`** <br>
      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/05089cf4-7c88-44bb-ae07-5a5d649f853e)
      
 4. **Using Strong Hashing Algorithms**:
@@ -102,6 +102,7 @@ Thus, we have implemented a comprehensive set of security measures to protect us
 
 6. **Account Lockout After Three Failed Attempts**:
    - To prevent brute force attacks, user accounts are temporarily locked after three consecutive failed login attempts.
+   - As shown in `login.php`
 ```php
 // Check if account is currently locked out
 if (isset($_SESSION['lockout_time']) && $_SESSION['lockout_time'] > time()) {
