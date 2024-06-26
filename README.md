@@ -262,7 +262,7 @@ if ($_SESSION['login_attempts'] >= 3) {
       $token = $_SESSION['csrf_token'];
       $token_expire = $_SESSION["token_expire"];
       ```
-      <br>**Example include `csrf.php` in other related file like `contactus.php` **</br>
+      <br>**Example include `csrf.php` in other related file like `contactus.php`**</br>
       ```php
       <?php
       session_start();
