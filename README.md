@@ -96,7 +96,7 @@ Thus, we have implemented a comprehensive set of security measures to protect us
 5. **SSL Certificate for Localhost (Secure HTTPS Connection)**:
    - An SSL certificate is essential for creating a secure HTTPS connection on localhost. It encrypts data transmitted between the server and client, ensuring the confidentiality and integrity of sensitive information.<br>
      <br>**Cert files in the local machine** <br>
-     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/204eea3e-d3f2-4335-a7c9-97184400dd09)
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/204eea3e-d3f2-4335-a7c9-97184400dd09) <br>
      **HTTPS on the browser** <br>
      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/f165fac5-780b-4964-ab50-ca58d74ec083)
 
@@ -151,33 +151,75 @@ if ($_SESSION['login_attempts'] >= 3) {
 
 11. **Authentication**:
     - Robust authentication mechanisms are in place to verify user identities before granting access to restricted areas of the application.
+    - Using `login_status.php` to ensure that only `isloggedin=true` has access to do everything
+      ``` php
+      session_start();
+      $response = array('isLoggedIn' => false, 'role' => '');
+      if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
+          // User is logged in
+          $response['isLoggedIn'] = true;
+          $response['role'] = $_SESSION['role']; // Retrieve and set the role
+      } else {
+          // User is not logged in
+          $response['isLoggedIn'] = false;
+          $response['role'] = 'guest'; // Set role to 'guest' for non-logged in users
+      }
+      echo json_encode($response);
+      ?>
+      ```
+      **Usage in `scripts.js`** <br>
+      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/744a4b9a-b09c-4c1a-a2c7-c5dde76a48f6)
+      <br>**Checking authentication in `bookingform.php`** <br>
+      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/2419fed5-380c-4786-ad6b-e4f0fc9b4974)
+      <br>**Checking authentication in `profilepage.php`** <br>
+      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/a074772e-1270-4bde-ae0b-117ef09c588f)
+   
 
 12. **Hashing, Salting, and Sanitizing Input**:
     - User inputs are hashed and salted to enhance password security, and sanitized to prevent injection attacks.
+      
 
 13. **CSRF Token Implementation**:
     - Cross-Site Request Forgery (CSRF) tokens are used to protect against CSRF attacks by ensuring that requests are legitimate and originate from authenticated users.
+      
 
 14. **Manipulation in Booking System**:
     - Measures are taken to prevent unauthorized manipulation of the booking system, ensuring the integrity of bookings and related transactions.
 
 15. **Same-Origin Policy**:
     - The same-origin policy is enforced to prevent unauthorized scripts on other sites from accessing data on my application.
-
+      ```php
+      // Validate Referer Header
+         if (isset($_SERVER['HTTP_REFERER'])) {
+             $referer = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
+             $allowed_domains = ['final.com']; 
+         
+             if (!in_array($referer, $allowed_domains)) {
+                 header('HTTP/1.1 403 Forbidden');
+                 die('Access Denied');
+             }
+         } else {
+             header('HTTP/1.1 403 Forbidden');
+             die('Access Denied');
+         }
+      ```
 16. **HttpOnly Cookies**:
-    - Cookies are set with the HttpOnly attribute to prevent client-side scripts from accessing them, mitigating the risk of XSS attacks.
+    - Cookies are set in the `https.conf` with the HttpOnly attribute to prevent client-side scripts from accessing them, mitigating the risk of XSS attacks.
+      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/0a278027-8e8c-44e6-af62-df51da9954b3)
 
 17. **Content Security Policy (CSP)**:
     - A CSP is implemented to control the resources the browser is allowed to load, reducing the risk of XSS and data injection attacks.
 
 18. **Idle Timeout**:
     - Sessions are configured to expire after a period of inactivity to reduce the risk of unauthorized access from unattended sessions.
+    - 
 
 19. **Hide Indexes**:
-    - Directory listings are disabled to prevent attackers from viewing the structure of directories and files on the server.
-
+    - Directory listings are disabled to prevent attackers from viewing the structure of directories and files on the server. in `httpd.conf`
+      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/dd77b34f-7e92-42c8-9690-d68656ea1249)
 20. **Hide Detailed Errors**:
-    - Detailed error messages are hidden from users to prevent leaking information about the application's structure or vulnerabilities.
+    - Detailed error messages are hidden from users to prevent leaking information about the application's structure or vulnerabilities. in `php.ini`
+      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/af0819d9-a26e-4d78-868c-e5c069507f8a)
 
 These security measures collectively enhance the robustness and resilience of the web application, safeguarding user data and maintaining a secure environment for users to interact with the system.
 
