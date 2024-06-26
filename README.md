@@ -124,12 +124,27 @@ if ($_SESSION['login_attempts'] >= 3) {
 
 7. **Encrypted Password During Submission**:
    - Passwords are encrypted during form submission to prevent interception by malicious actors during transmission.
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/b5a6350d-8f0f-4b05-8c04-6be5c48d6a28)
 
 8. **Unique Account Identification**:
    - The application enforces unique usernames and email addresses to prevent duplicate accounts and ensure each account is uniquely identifiable.
+     <br>**Error shown during registration** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/66b7435f-b466-46be-aaa4-6c3a4babdb31)
+     <br>**Checking the account in the `form.php`** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/3b3d38ea-2377-4a4e-86df-426ae907a7b7)
 
 9. **Prepared Statements**:
    - Prepared statements are used for database queries to protect against SQL injection attacks, ensuring safe handling of user inputs.
+     <br>**Prepared statment in `form.php`** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/6c0b3d18-6b16-401b-b3d4-69ba0d72cd58)
+     <br>**Prepared statment in `bookingform.php`** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/1ef3b74c-b3c1-4288-9c9e-e209b653a4d8)
+     <br>**Prepared statment in `contact.php`** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/00a41914-f7c0-408d-82ae-44f670cb306b)
+     <br>**Prepared statment in `editprofile.php`** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/e74fb1bf-29f8-41a5-bff3-3561e11cee29)
+     <br>**Prepared statment in `editpassword.php`** <br>
+     ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/7782b7c0-a680-46ed-bfcf-aa1c4e81c5a3)
 
 10. **Authorization on Every Request**:
     - Authorization checks are performed on every request to ensure users only access resources and functionalities they are permitted to use.
