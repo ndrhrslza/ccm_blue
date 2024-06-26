@@ -4,8 +4,7 @@
     <title>Order History</title>
     <link rel="stylesheet" type="text/css" href="profile.css">
     <script src="../homepage/index.js"></script>
-    <!-- Content Security Policy -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';"> -->
+
 </head>
 <body>
     <div id="header"></div>

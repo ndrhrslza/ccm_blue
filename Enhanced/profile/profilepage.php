@@ -12,6 +12,7 @@
         <section class="profile-info">
             <h2>Account Information</h2>
             <?php
+            session_start();
             include '../session_handler.php';
             // Include database connection securely
             require_once '../db.php';
@@ -19,8 +20,8 @@
             include '../sop_validation.php';
 
 
-            // Regenerate session ID after login
-            if (isset($_SESSION['id']) && $_SESSION['role'] == 'user') {
+            // Regenerate session ID 
+            if (isset($_SESSION['id']) && $_SESSION['logged_in'] && $_SESSION['role'] == 'user') {
                 session_regenerate_id();
 
 

@@ -1,6 +1,8 @@
 <?php
 session_start();
+include '../session_handler.php';
 require_once '../csrf.php';
+
 ?>
 <!DOCTYPE html>
 <html>
