@@ -147,7 +147,14 @@ if ($_SESSION['login_attempts'] >= 3) {
      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/7782b7c0-a680-46ed-bfcf-aa1c4e81c5a3)
 
 10. **Authorization on Every Request**:
-    - Authorization checks are performed on every request to ensure users only access resources and functionalities they are permitted to use.
+    - Authorization checks are performed on every request to ensure users only access resources and functionalities they are permitted to use by set this ```$_SESSION['role'] = 'user';``` in the `login.php`
+      <br>**Checking role in `bookingform.php`** <br>
+      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/2419fed5-380c-4786-ad6b-e4f0fc9b4974)
+      <br>**Checking role in `profilepage.php`** <br>
+      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/a074772e-1270-4bde-ae0b-117ef09c588f)
+      <br>**Check the role where if role is user button logout is displayed and if role is guest button login is displayed  in `index.js`** <br>
+      ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/7c9fb27b-f97d-4ace-b88f-1e34d7b12da2)
+
 
 11. **Authentication**:
     - Robust authentication mechanisms are in place to verify user identities before granting access to restricted areas of the application.
@@ -276,10 +283,10 @@ if ($_SESSION['login_attempts'] >= 3) {
     - 
 
 19. **Hide Indexes**:
-    - Directory listings are disabled to prevent attackers from viewing the structure of directories and files on the server. in `httpd.conf`
+    - Directory listings are disabled to prevent attackers from viewing the structure of directories and files on the server in `httpd.conf` <br>
       ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/dd77b34f-7e92-42c8-9690-d68656ea1249)
 20. **Hide Detailed Errors**:
-    - Detailed error messages are hidden from users to prevent leaking information about the application's structure or vulnerabilities. in `php.ini`
+    - Detailed error messages are hidden from users to prevent leaking information about the application's structure or vulnerabilities in `php.ini`<br>
       ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/af0819d9-a26e-4d78-868c-e5c069507f8a)
 
 These security measures collectively enhance the robustness and resilience of the web application, safeguarding user data and maintaining a secure environment for users to interact with the system.
