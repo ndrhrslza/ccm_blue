@@ -175,10 +175,127 @@ if ($_SESSION['login_attempts'] >= 3) {
       ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/a074772e-1270-4bde-ae0b-117ef09c588f)
    
 
-12. **Hashing, Salting, and Sanitizing Input**:
-    - User inputs are hashed and salted to enhance password security, and sanitized to prevent injection attacks.
+12. **Hashing and Sanitizing Input**:
+    - User inputs are hashed to enhance password security, and sanitized to prevent injection attacks.
+      <br>**hashing and sanitizing input in  `form.php`** <br>
+      ```php
+      // Function to sanitize user input
+      function sanitize_input($data) {
+        return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+      }
       
+      // Get and sanitize user input from the registration form
+      $username = sanitize_input($_POST['username']);
+      $email = sanitize_input($_POST['email']);
+      $phone = sanitize_input($_POST['phone']);
+      $hashed_password = sanitize_input($_POST['hashed_password']);
+      $hashed_confirm_password = sanitize_input($_POST['hashed_confirm_password']);
 
+      // Check if the hashed passwords match
+      if ($hashed_password !== $hashed_confirm_password) {
+        header("Location: register.php?error=passwords_do_not_match");
+        exit();
+      }
+      ```
+      <br>**hashing and sanitizing input in `login.php`**</br>
+      ```php
+      //Function to sanitize user input
+      function sanitize_input($data) {
+      return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+      }
+
+       $email = sanitize_input($_POST["email"]);
+        $hashed_password = sanitize_input($_POST["hashed_password"]);
+
+      <script>
+        function hashPassword(event) {
+            event.preventDefault();
+            const passwordField = document.getElementById('password');
+            const hashedPasswordField = document.getElementById('hashed_password');
+
+            // Hash the password using SHA-256
+            const hashedPassword = CryptoJS.SHA256(passwordField.value).toString();
+            
+            // Set the hashed password to the hidden field
+            hashedPasswordField.value = hashedPassword;
+            
+            // Clear the plain text password field
+            passwordField.value = '';
+            
+            // Submit the form
+            document.getElementById('loginForm').submit();
+        }
+      </script>
+      ```
+      <br>**hashing input for `register.php`**</br>
+      ```php
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+      <script>
+        function hashPassword(event) {
+      event.preventDefault();
+            const passwordField = document.getElementById('password');
+            const confirmPasswordField = document.getElementById('confirmPassword');
+            const hashedPasswordField = document.getElementById('hashed_password');
+            const hashedConfirmPasswordField = document.getElementById('hashed_confirm_password');
+
+            // Hash the passwords using SHA-256
+            const hashedPassword = CryptoJS.SHA256(passwordField.value).toString();
+            const hashedConfirmPassword = CryptoJS.SHA256(confirmPasswordField.value).toString();
+            
+            // Set the hashed passwords to the hidden fields
+            hashedPasswordField.value = hashedPassword;
+            hashedConfirmPasswordField.value = hashedConfirmPassword;
+            
+            // Clear the plain text password fields
+            passwordField.value = '';
+            confirmPasswordField.value = '';
+            
+            // Submit the form
+            document.getElementById('registerForm').submit();
+        }
+      </script>
+      ```
+      <br>**sanitizing input in `bookingfor.php`**</br>
+      ```php
+      //Get and sanitize user input from the booking form
+      $name = sanitize_input($_POST['name']);
+      $email = sanitize_input($_POST['email']);
+      $phoneno = sanitize_input($_POST['phoneno']);
+      $adultTraveler = sanitize_input($_POST['adultTraveler']);
+      $childTraveler = sanitize_input($_POST['childTraveler']);
+      $destination = sanitize_input($_POST['destination']);
+      $totalAmount = sanitize_input($_POST['totalAmount']);
+      $payMethod = sanitize_input($_POST['payMethod']);
+
+      if ($payMethod == 'internetbanking') {
+        $bank = sanitize_input($_POST['bank']);
+      } elseif ($payMethod == 'creditcard') {
+        $cardNumber = sanitize_input($_POST['cardNumber']);
+        $cardName = sanitize_input($_POST['cardName']);
+        $expiryDate = sanitize_input($_POST['expiryDate']);
+        $cvv = sanitize_input($_POST['cvv']);
+      ```
+      <br>**sanitizing input in `contact.php`**</br>
+      ```php
+      //Get and sanitize form data
+      $name = sanitize_input($_POST['name']);
+      $email = sanitize_input($_POST['email']);
+      $subject = sanitize_input($_POST['subject']);
+      $message = sanitize_input($_POST['message']);
+      ```
+      <br>**sanitizing input in `editpassword.php`**</br>
+      ```php
+      $old_password = sanitize_input($_POST['old_password']);
+      $new_password = sanitize_input($_POST['new_password']);
+      $confirm_password = sanitize_input($_POST['confirm_password']);
+      ```
+      <br>**sanitizing input in `editprofile.php`**</br>
+      ```php
+      //Validate input
+      $username = sanitize_input($_POST['username']);
+      $email = sanitize_input($_POST['email']);
+      $phone = sanitize_input($_POST['phone']);
+      ```
 13. **CSRF Token Implementation**:
     - Cross-Site Request Forgery (CSRF) tokens are used to protect against CSRF attacks by ensuring that requests are legitimate and originate from authenticated users.
       
