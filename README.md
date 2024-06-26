@@ -182,8 +182,8 @@ if ($_SESSION['login_attempts'] >= 3) {
       ![image](https://github.com/ndrhrslza/ccm_blue/assets/85787305/a074772e-1270-4bde-ae0b-117ef09c588f)
    
 
-12. **Hashing and Sanitizing Input**:
-    - User inputs are hashed to enhance password security, and sanitized to prevent injection attacks.
+12. **Input Validation and Sanitizing Input**:
+    - User inputs are validated to ensure only right format are accepted, and sanitized to prevent injection attacks.
       
       <br>**sanitizing input in  `form.php`** <br>
       ```php
@@ -193,7 +193,6 @@ if ($_SESSION['login_attempts'] >= 3) {
       }
 
       ```
-      <br>**sanitizing input in `login.php`**</br>
       ```php
       //Function to sanitize user input
       function sanitize_input($data) {
@@ -248,6 +247,43 @@ if ($_SESSION['login_attempts'] >= 3) {
       $email = sanitize_input($_POST['email']);
       $phone = sanitize_input($_POST['phone']);
       ```
+     <br>**validating input in `register.php`, `booking.php`**</br>
+      ```php
+         <input type="text" name="username" pattern="[a-zA-Z0-9_]{3,16}" placeholder="JohnDoe" required>
+         <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z]+\.[a-z]{2,}$" placeholder="john@example.com" required>
+         <input type="text" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="012-345-6789" required>
+         <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}" 
+
+         const namePattern = /^[a-zA-Z\s]+$/;
+        if (!namePattern.test(name)) {
+            alert('Invalid name format');
+            return false;
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert('Invalid email format');
+            return false;
+        }
+
+        const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+        if (!phonePattern.test(phoneno)) {
+            alert('Invalid phone number format');
+            return false;
+        }
+   
+         if (!preg_match("/^[A-Za-z\s]+$/", $name)) {
+           $errors[] = "Invalid name format.";
+       }
+   
+       if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+           $errors[] = "Invalid email format.";
+       }
+   
+       if (!preg_match("/^\d{3}-\d{3}-\d{4}$/", $phoneno)) {
+           $errors[] = "Invalid phone number format.";
+      ```
+      
 13. **CSRF Token Implementation**:
     - Cross-Site Request Forgery (CSRF) tokens are used to protect against CSRF attacks by ensuring that requests are legitimate and originate from authenticated users.
 
