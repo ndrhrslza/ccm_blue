@@ -3,10 +3,19 @@ session_start();
 include '../db.php';
 include '../csp.php';
 include '../sop_validation.php';
+require_once '../csrf.php';
 
 // Function to sanitize input data
 function sanitize_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
+}
+
+//check if the CSRF token is valid 
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    echo $_POST['csrf_token'];
+    echo $_SESSION['csrf_token'];
+    // header("Location: contactus.php?error=invalid_csrf_token");
+    exit();
 }
 
 // Get and sanitize form data

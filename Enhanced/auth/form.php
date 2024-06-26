@@ -1,10 +1,16 @@
     <?php
     include '../csp.php';
     require_once '../db.php';
+    require_once '../csrf.php';
 
     // Function to sanitize user input
     function sanitize_input($data) {
         return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+    }
+
+    //check if the CSRF token is valid 
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        header("Location: register.php?error=invalid_csrf_token");
     }
 
     // Get and sanitize user input from the registration form
