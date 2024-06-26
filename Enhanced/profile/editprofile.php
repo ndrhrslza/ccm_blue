@@ -73,9 +73,7 @@
                 $username = sanitize_input($_POST['username']);
                 $email = sanitize_input($_POST['email']);
                 $phone = sanitize_input($_POST['phone']);
-                $old_password = sanitize_input($_POST['old_password']);
-                $new_password = sanitize_input($_POST['new_password']);
-                $confirm_password = sanitize_input($_POST['confirm_password']);
+       
 
                 // Check if passwords match and are not empty
                 if (!empty($old_password) && !empty($new_password) && !empty($confirm_password)) {
@@ -138,24 +136,17 @@
             ?>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($user_data['username']); ?>" required><br><br>
+                <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($user_data['username']); ?>" pattern="[a-zA-Z0-9_]{3,16}" required><br><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user_data['email']); ?>" required><br><br>
+                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user_data['email']); ?>" pattern="[a-z0-9._%+-]+@[a-z]+\.[a-z]{2,}$"  required><br><br>
 
                 <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" value="<?php echo htmlspecialchars($user_data['phone']); ?>" required><br><br>
+                <input type="tel" id="phone" name="phone" value="<?php echo htmlspecialchars($user_data['phone']); ?>"  pattern="\d{3}-\d{3}-\d{4}" required><br><br>
 
-                <label for="old_password">Current Password:</label>
-                <input type="password" id="old_password" name="old_password"><br><br>
+        
 
-                <label for="new_password">New Password:</label>
-                <input type="password" id="new_password" name="new_password"><br><br>
-
-                <label for="confirm_password">Confirm New Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password"><br><br>
-
-                <input type="submit" value="Update Profile">
+                <center><input type="submit" value="Update Profile"></center>
                 <input type="hidden" name="_token" value="<?php echo $token;?>">
             </form>
         </section>

@@ -54,7 +54,8 @@
                     <div class="button-container">
                     <input type="button" value="Order History" onclick="location.href='orderhistory.php';">
                     <input type="button" value="Delete Account" onclick="location.href='deleteacc.php';">
-                    <input type="button" value="Edit Profile" onclick="location.href='edit.php';">
+                    <input type="button" value="Edit Profile" onclick="location.href='editprofile.php';">
+                    <input type="button" value="Change Password" onclick="location.href='editpassword.php';">
                     </div>
 
                 <div id="footer"></div>

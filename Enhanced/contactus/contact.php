@@ -12,9 +12,9 @@ function sanitize_input($data) {
 
 //check if the CSRF token is valid 
 if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-    echo $_POST['csrf_token'];
-    echo $_SESSION['csrf_token'];
-    // header("Location: contactus.php?error=invalid_csrf_token");
+    // echo $_POST['csrf_token'];
+    // echo $_SESSION['csrf_token'];
+    header("Location: contactus.php?error=invalid_csrf_token");
     exit();
 }
 
